@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redirecting...</title>
   <script type="text/javascript">
-    // 현재 URL의 경로와 검색, 해시 값을 가져옵니다.
+    // 현재 URL의 호스트와 경로, 검색, 해시 값을 가져옵니다.
+    const origin = window.location.origin;
     const pathname = window.location.pathname;
     const search = window.location.search;
     const hash = window.location.hash;
 
-    // "index.html"이 포함되지 않은 URL로 리디렉션합니다.
+    // index.html이 포함된 URL로 리디렉션 방지
     if (!pathname.includes('index.html') && !pathname.includes('404')) {
-      // /index.html 경로가 아닌 경우 / 로 리디렉션합니다.
-      window.location.replace('/' + pathname + search + hash);
+      // 절대 경로를 사용하여 리디렉션
+      window.location.replace(origin + pathname + search + hash);
     }
   </script>
 </head>
