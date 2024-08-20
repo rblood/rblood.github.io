@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <title>Redirecting...</title>
     <script type="text/javascript">
-      // Get the current path and query string
+      // 현재 경로를 가져옴
       const pathname = window.location.pathname;
       const search = window.location.search;
       const hash = window.location.hash;
 
-      // Redirect to the root with the correct path and query string
-      if (!pathname.includes('404')) {
-        window.location.replace(pathname + search + hash);
+      // 이미 해시(#)가 포함된 경로로 리디렉션된 경우 무한 루프 방지
+      if (!hash && pathname !== "/404.html") {
+        // Redirect to the correct route
+        window.location.replace(pathname + search + "#/");
       }
     </script>
   </head>
