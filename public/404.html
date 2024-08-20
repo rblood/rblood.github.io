@@ -3,21 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirecting...</title>
-  <script type="text/javascript">
-    // 현재 URL의 호스트와 경로, 검색, 해시 값을 가져옵니다.
-    const origin = window.location.origin;
-    const pathname = window.location.pathname;
-    const search = window.location.search;
-    const hash = window.location.hash;
-
-    // index.html이 포함된 URL로 리디렉션 방지
-    if (!pathname.includes('index.html') && !pathname.includes('404')) {
-      // 절대 경로를 사용하여 리디렉션
-      window.location.replace(origin + pathname + search + hash);
-    }
-  </script>
+  <title>Page Not Found</title>
+  <meta http-equiv="refresh" content="0;url=/" />
 </head>
 <body>
+  <p>If you are not redirected, <a href="/">click here</a>.</p>
 </body>
 </html>
