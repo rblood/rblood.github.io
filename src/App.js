@@ -13,6 +13,7 @@ import Sign from './page/Sign';
 import Write from './page/Write';
 import List from './page/List';
 import View from './page/View';
+import Change from './page/Change';
 
 // Import the functions you need from the SDKs you need
 //import { initializeApp } from "firebase/app";
@@ -46,7 +47,9 @@ const App = (props) => {
               <Route exact path="/" render={() => <List manage={manageRef} />} />
               <Route path="/write" render={() => <Write manage={manageRef}/>} />
               <Route path="/view" render={() => <View manage={manageRef}/>} />
+              <Route path="/change" render={() => <Change manage={manageRef}/>} />
             </main>
+            
           </>
       }
       <Foot />

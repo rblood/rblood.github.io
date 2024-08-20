@@ -18,6 +18,10 @@ const App = (props) => {
     history.replace('/');
   }
 
+  const change = () => {
+    history.push('/change');
+  }
+
   /*useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (!storedUser) {
@@ -38,7 +42,14 @@ const App = (props) => {
           <NavLink className='navButton' exact to="/" title="과제목록"><i className="ri-todo-line"></i><span>관리목록</span></NavLink>
           <NavLink className='navButton' exact to="/write" title="과제등록"><i className="ri-pencil-line"></i><span>과제등록</span></NavLink>
         </div>
-        {!isMobile && <div className='headRight'><button className='logout' onClick={logOut} title="로그아웃"><span>{user && user}</span><i className="ri-logout-box-r-line"></i></button></div>}
+        {
+          !isMobile &&
+          <div className='headRight'>
+            <span>{user && user}</span>
+            <button className='logout' onClick={change} title="개인정보변경"><i className="ri-user-settings-line"></i></button>
+            <button className='logout' onClick={logOut} title="로그아웃"><i className="ri-logout-box-r-line"></i></button>
+          </div>
+        }
       </nav>
     </header>
   );

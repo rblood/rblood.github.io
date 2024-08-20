@@ -85,7 +85,7 @@ const App = (props) => {
                   type="text"
                   id='number'
                   name="number"
-                  maxLength={12}
+                  maxLength={16}
                   placeholder="아이디"
                   onChange={onChange}
                   value={number}
@@ -97,7 +97,7 @@ const App = (props) => {
                   type={view ? 'text' : 'password'}
                   id='pw'
                   name="pw"
-                  maxLength={12}
+                  maxLength={16}
                   placeholder="비밀번호"
                   onChange={onChange}
                   autoComplete="off"

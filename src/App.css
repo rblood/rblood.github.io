@@ -75,6 +75,12 @@
   justify-content: flex-end;
   align-items: center;
   display: flex;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.headRight span {
+  margin-right: 8px;
 }
 
 .logout {
@@ -87,7 +93,6 @@
   height: 56px;
   flex-direction: row;
   font-size: 14px;
-  text-transform: capitalize;
   padding-left: 0;
   padding-right: 0;
 }
@@ -249,6 +254,10 @@
   justify-content: space-between;
   height: 100%;
   height: 768px;
+}
+
+.login.change {
+  justify-content: center;
 }
 
 
@@ -781,6 +790,7 @@ tbody tr:hover td.delTd{
   border-left: 1px solid rgba(0, 0, 0, 0.64);
   border-right: 1px solid rgba(0, 0, 0, 0.64);
   height: 56px;
+  min-width: 378px;
 }
 
 .nav .navButton.menu {
