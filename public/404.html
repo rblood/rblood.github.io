@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Redirecting...</title>
-    <meta http-equiv="refresh" content="0; url=/index.html" />
-    <script type="text/javascript">
-      // 현재 경로를 유지한 채로 리디렉션
-      const pathname = window.location.pathname;
-      const search = window.location.search;
-      const hash = window.location.hash;
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+  <script type="text/javascript">
+    // 현재 URL의 경로, 검색, 해시 값을 가져옵니다.
+    const pathname = window.location.pathname;
+    const search = window.location.search;
+    const hash = window.location.hash;
 
-      // 이미 index.html이 아닌 경로에 있는 경우에만 리디렉션 수행
-      if (pathname !== '/index.html') {
-        window.location.replace('/index.html' + pathname + search + hash);
-      }
-    </script>
-  </head>
-  <body>
-  </body>
+    // 리디렉션을 수행할 때, 이미 "index.html"이 경로에 포함된 경우를 피합니다.
+    if (!pathname.includes('index.html') && !pathname.includes('404')) {
+      // "index.html"이 경로에 포함되어 있지 않은 경우에만 리디렉션 수행
+      window.location.replace('/index.html' + pathname + search + hash);
+    }
+  </script>
+</head>
+<body>
+</body>
 </html>
