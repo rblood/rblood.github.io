@@ -2,9 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>not found</title>
+    <title>Redirecting...</title>
+    <meta http-equiv="refresh" content="0; url=/index.html" />
+    <script type="text/javascript">
+      // 현재 경로를 유지한 채로 리디렉션
+      const pathname = window.location.pathname;
+      const search = window.location.search;
+      const hash = window.location.hash;
+
+      // 이미 index.html이 아닌 경로에 있는 경우에만 리디렉션 수행
+      if (pathname !== '/index.html') {
+        window.location.replace('/index.html' + pathname + search + hash);
+      }
+    </script>
   </head>
   <body>
-    page not found
   </body>
 </html>
