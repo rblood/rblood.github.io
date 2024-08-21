@@ -63,88 +63,90 @@ const App = (props) => {
   const maxYear = year.max;
   const colCount = year.count;
 
-  const style = {
-    table: {
-      width: "100%",
-      height: "1px",
-      borderCollapse: "collapse",
-      border: "2px solid #000",
-      backgroundColor: "#fff",
-      fontSize: "12px",
-      tableLayout: "fixed",
-      caption: {
-        fontSize: "21px",
-        fontWeight: "600",
-        padding: "16px",
-        textAlign: "center",
-        height: "96px",
-      },
-      w70: {
-        width: "70px"
-      },
-      w50: {
-        width: "50px"
-      },
-      w48: {
-        width: "48px"
-      },
-      w54: {
-        width: "54px"
-      },
-      w180: {
-        width: "180px"
-      },
-      w304: {
-        width: "304px"
-      },
-      th: {
-        background: "#efefef",
-        border: isMobile ? "1px solid #d3d3d3" : "0.5pt solid #d3d3d3",
-        fontWeight: "400",
-        padding: "6px 4px",
-        height: "51px",
-        minHeight: "51px",
-        borderBottom: isMobile ? "1px solid #ccc" : "0.5pt solid #ccc",
-        wordBreak: "keep-all",
-        whiteSpace: "normal",
-        overflowWrap: "anywhere",
-      },
-      thE: {
-        width: isMobile ? "0pt" : "0.5pt",
-      },
-      tdE: {
-        height: "51px",
-        minHeight: "51px",
-      },
-      td: {
-        border: isMobile ? "1px solid #d3d3d3" : "0.5pt solid #d3d3d3",
-        fontWeight: "400",
-        padding: "6px 4px",
-        height: "51px",
-        minHeight: "51px",
-        textAlign: "center",
-        wordBreak: "keep-all",
-        whiteSpace: "normal",
-        overflowWrap: "anywhere",
-      },
-      tdRed: {
-        background: "#D01414",
-        borderBottom: isMobile ? "1px solid rgba(0,0,0,0.3)" : "0.5pt solid rgba(0,0,0,0.3)",
-      },
-      tdGreen: {
-        background: "#20D067",
-        borderBottom: isMobile ? "1px solid rgba(0,0,0,0.3)" : "0.5pt solid rgba(0,0,0,0.3)",
-      },
-      tdYellow: {
-        background: "#EFD214",
-        borderBottom: isMobile ? "1px solid rgba(0,0,0,0.3)" : "0.5pt solid rgba(0,0,0,0.3)",
-      },
-      tdNormal: {
-        background: "#efefef",
-        borderBottom: isMobile ? "1px solid rgba(0,0,0,0.3)" : "0.5pt solid rgba(0,0,0,0.3)",
+  const style = useMemo(() => {
+    return {
+      table: {
+        width: "100%",
+        height: "1px",
+        borderCollapse: "collapse",
+        border: "2px solid #000",
+        backgroundColor: "#fff",
+        fontSize: "12px",
+        tableLayout: "fixed",
+        caption: {
+          fontSize: "21px",
+          fontWeight: "600",
+          padding: "16px",
+          textAlign: "center",
+          height: "96px",
+        },
+        w70: {
+          width: "70px"
+        },
+        w50: {
+          width: "50px"
+        },
+        w48: {
+          width: "48px"
+        },
+        w54: {
+          width: "54px"
+        },
+        w180: {
+          width: "180px"
+        },
+        w304: {
+          width: "304px"
+        },
+        th: {
+          background: "#efefef",
+          border: isMobile ? "1px solid #d3d3d3" : "0.5pt solid #d3d3d3",
+          fontWeight: "400",
+          padding: "6px 4px",
+          height: "51px",
+          minHeight: "51px",
+          borderBottom: isMobile ? "1px solid #ccc" : "0.5pt solid #ccc",
+          wordBreak: "keep-all",
+          whiteSpace: "normal",
+          overflowWrap: "anywhere",
+        },
+        thE: {
+          width: isMobile ? "0pt" : "0.5pt",
+        },
+        tdE: {
+          height: "51px",
+          minHeight: "51px",
+        },
+        td: {
+          border: isMobile ? "1px solid #d3d3d3" : "0.5pt solid #d3d3d3",
+          fontWeight: "400",
+          padding: "6px 4px",
+          height: "51px",
+          minHeight: "51px",
+          textAlign: "center",
+          wordBreak: "keep-all",
+          whiteSpace: "normal",
+          overflowWrap: "anywhere",
+        },
+        tdRed: {
+          background: "#D01414",
+          borderBottom: isMobile ? "1px solid rgba(0,0,0,0.3)" : "0.5pt solid rgba(0,0,0,0.3)",
+        },
+        tdGreen: {
+          background: "#20D067",
+          borderBottom: isMobile ? "1px solid rgba(0,0,0,0.3)" : "0.5pt solid rgba(0,0,0,0.3)",
+        },
+        tdYellow: {
+          background: "#EFD214",
+          borderBottom: isMobile ? "1px solid rgba(0,0,0,0.3)" : "0.5pt solid rgba(0,0,0,0.3)",
+        },
+        tdNormal: {
+          background: "#efefef",
+          borderBottom: isMobile ? "1px solid rgba(0,0,0,0.3)" : "0.5pt solid rgba(0,0,0,0.3)",
+        }
       }
-    }
-  };
+    };
+  }, []);
 
   const numbertoCommas = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -165,6 +167,7 @@ const App = (props) => {
       [name]: value
     }));
   }, []);
+
 
 
   const memoizedResult = useMemo(() => {
