@@ -286,6 +286,7 @@ const App = (props) => {
                 {useYearRange(minYear, maxYear).map((item) => (
                   <option value={item} key={item}>{item}</option>
                 ))}
+                {data && data.STARTCOMPYEAR && <option value="">취소</option>}
               </select>
             </div>
             <div className='formWrap'>
@@ -295,6 +296,7 @@ const App = (props) => {
                 {["완료", "조건부완료", "중단", "연장", "미평가"].map((item) => (
                   <option value={item} key={item}>{item}</option>
                 ))}
+                {data && data.STARTCOMPRESULT && <option value="">취소</option>}
               </select>
             </div>
             <div className='formWrap'>
@@ -315,6 +317,7 @@ const App = (props) => {
                 {["완료", "조건부완료", "중단", "연장", "1차완료", "미평가"].map((item) => (
                   <option value={item} key={item}>{item}</option>
                 ))}
+                {data && data.ENDCOMPRESULT && <option value="">취소</option>}
               </select>
             </div>
             <div className='formWrap empty'></div>
@@ -325,6 +328,7 @@ const App = (props) => {
                 {useYearRange(minYear, maxYear).map((item) => (
                   <option value={item} key={item}>{item}</option>
                 ))}
+                {data && data.STARTYEAR && <option value="">취소</option>}
               </select>
             </div>
             <div className='formWrap'>
@@ -334,6 +338,7 @@ const App = (props) => {
                 {["인증", "인증 (대상)", "인증 (금상)", "인증 (은상)", "인증 (동상)", "인증 (장려)", "미인증 (중단)", "미인증 (재도전)"].map((item) => (
                   <option value={item} key={item}>{item}</option>
                 ))}
+                {data && data.STARTRESULT && <option value="">취소</option>}
               </select>
             </div>
             <div className='formWrap'>
@@ -354,6 +359,7 @@ const App = (props) => {
                 {["인증", "인증 (대상)", "인증 (금상)", "인증 (은상)", "인증 (동상)", "인증 (장려)", "미인증 (중단)", "1차인증"].map((item) => (
                   <option value={item} key={item}>{item}</option>
                 ))}
+                {data && data.ENDRESULT && <option value="">취소</option>}
               </select>
             </div>
             <div className='formWrap empty'></div>
@@ -403,10 +409,9 @@ const App = (props) => {
             </div>
             <div className='formWrap'>
               <div className='label' htmlFor='CO'>사후관리상태</div>
-              <div className='radioGroup'>
-                {["red", "green", "yellow"].map((item, index) => (
+              <div className='radioGroup write'>
+                {["", "red", "green", "yellow"].map((item, index) => (
                   <div key={item + index}>
-
                     <input
                       type='radio'
                       name='color'

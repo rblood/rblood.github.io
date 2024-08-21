@@ -57,7 +57,7 @@ const App = (props) => {
   const endCompResultArray = ["완료", "조건부완료", "중단", "연장", "1차완료", "미평가"];
   const startResultArray = ["인증", "인증 (대상)", "인증 (금상)", "인증 (은상)", "인증 (동상)", "인증 (장려)", "미인증 (중단)", "미인증 (재도전)"];
   const endResultArray = ["인증", "인증 (대상)", "인증 (금상)", "인증 (은상)", "인증 (동상)", "인증 (장려)", "미인증 (중단)", "1차인증"];
-  const colorArray = ["all", "red", "green", "yellow"];
+  const colorArray = ["", "all", "red", "green", "yellow"];
 
   const minYear = year.min;
   const maxYear = year.max;
@@ -487,9 +487,9 @@ const App = (props) => {
                       <option value={item} key={item}>{item}</option>
                     ))}
                   </select>
-                  <span className='space'>~</span>
-                  <select id="EY" name="endYear" onChange={handleFilterChange} value={endYear}>
-                    <option value="all">전체</option>
+                  <span className='space' style={{display:startYear === 'all' && 'none'}}>~</span>
+                  <select id="EY" name="endYear" onChange={handleFilterChange} value={endYear} style={{ display: startYear === 'all' && 'none' }}>
+
                     {useYearRange(startYear, maxYear).map((item) => (
                       <option value={item} key={item}>{item}</option>
                     ))}
@@ -532,9 +532,9 @@ const App = (props) => {
                       <option value={item} key={item}>{item}</option>
                     ))}
                   </select>
-                  <span className='space'>~</span>
-                  <select id="ER" name="endResult" onChange={handleFilterChange} value={endResult}>
-                    <option value="all">전체</option>
+                  <span className='space' style={{ display: startResult === 'all' && 'none' }}>~</span>
+                  <select id="ER" name="endResult" onChange={handleFilterChange} value={endResult} style={{ display: startResult === 'all' && 'none' }}>
+
                     {useYearRange(startResult, maxYear).map((item) => (
                       <option value={item} key={item}>{item}</option>
                     ))}

@@ -1102,6 +1102,10 @@ label.radioColor.yellow {
   background-size: cover;
 }
 
+.radioGroup div:first-child input[type=radio]:checked+label.radioColor {
+  background-image: url("./assets/check-fill2.png");
+}
+
 .hidePrint {
   display: none;
 }
@@ -1130,6 +1134,7 @@ select:-moz-focusring {
 i {
   font-weight: 100;
 }
+
 
 @media (max-width: 459.9px) {
 

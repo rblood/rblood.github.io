@@ -48,7 +48,7 @@ const App = (props) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   }
 
-  const tempHeight = isMobile ? "48px" : "56px";
+  //const tempHeight = isMobile ? "48px" : "56px";
 
   const style = useMemo(() => ({
     table: {
@@ -85,12 +85,28 @@ const App = (props) => {
         borderRight: "1px solid rgba(0,0,0,0.16)",
         borderLeft: "1px solid rgba(0,0,0,0.16)",
       },
+      tdM: {
+        padding: "0px 16px",
+        backgroundColor: "rgba(255, 255, 255, 0.9)",
+        wordBreak: "keep-all",
+        textAlign: "left",
+      },
+      tdMB: {
+        padding: "0px 16px",
+        //height: tempHeight,
+        backgroundColor: "rgba(255, 255, 255, 0.9)",
+        wordBreak: "keep-all",
+        textAlign: "left",
+        //letterSpacing: "1.2pt",
+        borderBottom: "1px solid rgba(0,0,0,0.16)",
+      },
       tdR: {
         borderRadius: "8px",
         borderTop: "1px solid rgba(0,0,0,0.16)",
         borderBottom: "1px solid rgba(0,0,0,0.16)",
         verticalAlign: "top",
-        padding: "16px"
+        padding: "16px",
+        height: "168px"
       },
       tdT: {
         borderRadius: "8px 8px 0 0",
@@ -111,7 +127,7 @@ const App = (props) => {
       },
       tdML: {
         padding: "0px 16px",
-        height: tempHeight,
+        //height: tempHeight,
         backgroundColor: "rgba(255, 255, 255, 0.9)",
         wordBreak: "keep-all",
         textAlign: "left",
@@ -177,6 +193,9 @@ const App = (props) => {
         borderBottom: "1px solid rgba(0,0,0,0.16)",
         borderRight: "1px solid rgba(0,0,0,0.16)",
       },
+      tdBP: {
+        padding: "0px 0px 16px 16px",
+      },
       tdS: {
         height: isMobile ? "16px" : "24px"
       },
@@ -216,11 +235,15 @@ const App = (props) => {
         borderLeft: "1px solid rgba(0,0,0,0.16)",
         borderBottom: "1px solid rgba(0,0,0,0.16)",
       },
+      tdI: {
+        padding: "0px 16px 0px 32px",
+        verticalAlign: "top",
+      },
       foot: {
         height: isMobile ? "16px" : "24px",
       }
     }
-  }), [tempHeight]);
+  }), []);
 
   const loadData = useCallback(async () => {
     if (location.state) {
@@ -298,116 +321,132 @@ const App = (props) => {
               <col width={isMobile ? "16px" : "24px"} />
               <col width="auto" />
               <col width="auto" />
+              <col width="auto" />
+              <col width="auto" />
               <col width={isMobile ? "16px" : "24px"} />
             </colgroup>
             <thead>
               <tr>
-                <th style={style.table.th} colSpan={4}>{title}</th>
+                <th style={style.table.th} colSpan={6}>{title}</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td></td><td style={Object.assign({}, style.table.td, style.table.tdT)} colSpan={2}>■ 관리번호&nbsp;:&nbsp;{id}</td><td></td>
+                <td></td><td style={Object.assign({}, style.table.td, style.table.tdT)} colSpan={4}>■ 관리번호&nbsp;:&nbsp;{id}</td><td></td>
               </tr>
               <tr>
-                <td></td><td style={style.table.td} colSpan={2}>■ 확인번호&nbsp;:&nbsp;{checknum}</td><td></td>
+                <td></td><td style={style.table.td} colSpan={4}>■ 확인번호&nbsp;:&nbsp;{checknum}</td><td></td>
               </tr>
               <tr>
-                <td></td><td style={Object.assign({}, style.table.td, style.table.tdU)} colSpan={2}>■ 팀장&nbsp;:&nbsp;{leader}</td><td></td>
+                <td></td><td style={Object.assign({}, style.table.td, style.table.tdU)} colSpan={4}>■ 팀장&nbsp;:&nbsp;{leader}</td><td></td>
               </tr>
               <tr>
-                <td style={style.table.tdS} colSpan={4}></td>
+                <td style={style.table.tdS} colSpan={6}></td>
               </tr>
               {isMobile ? (
                 <>
                   <tr>
-                    <td></td><td style={Object.assign({}, style.table.td, style.table.tdT)} colSpan={2}>■ 1차완료 평가연도&nbsp;:&nbsp;{startcompyear}</td><td></td>
+                    <td></td><td style={Object.assign({}, style.table.td, style.table.tdT)} colSpan={4}>■ 1차완료 평가연도&nbsp;:&nbsp;{startcompyear}</td><td></td>
                   </tr>
                   <tr>
-                    <td></td><td style={style.table.td} colSpan={2}>■ 1차완료 평가결과&nbsp;:&nbsp;{startcompresult}</td><td></td>
+                    <td></td><td style={style.table.td} colSpan={4}>■ 1차완료 평가결과&nbsp;:&nbsp;{startcompresult}</td><td></td>
                   </tr>
                   <tr>
-                    <td></td><td style={style.table.td} colSpan={2}>■ 2차완료 평가연도&nbsp;:&nbsp;{endcompyear}</td><td></td>
+                    <td></td><td style={style.table.td} colSpan={4}>■ 2차완료 평가연도&nbsp;:&nbsp;{endcompyear}</td><td></td>
                   </tr>
                   <tr>
-                    <td></td><td style={style.table.td} colSpan={2}>■ 2차완료 평가결과&nbsp;:&nbsp;{endcompresult}</td><td></td>
+                    <td></td><td style={style.table.td} colSpan={4}>■ 2차완료 평가결과&nbsp;:&nbsp;{endcompresult}</td><td></td>
                   </tr>
                   <tr>
-                    <td></td><td style={style.table.td} colSpan={2}>■ 1차 성과 평가연도&nbsp;:&nbsp;{startyear}</td><td></td>
+                    <td></td><td style={style.table.td} colSpan={4}>■ 1차 성과 평가연도&nbsp;:&nbsp;{startyear}</td><td></td>
                   </tr>
                   <tr>
-                    <td></td><td style={style.table.td} colSpan={2}>■ 1차 성과 평가결과&nbsp;:&nbsp;{startresult}</td><td></td>
+                    <td></td><td style={style.table.td} colSpan={4}>■ 1차 성과 평가결과&nbsp;:&nbsp;{startresult}</td><td></td>
                   </tr>
                   <tr>
-                    <td></td><td style={style.table.td} colSpan={2}>■ 2차 성과 평가연도&nbsp;:&nbsp;{endyear}</td><td></td>
+                    <td></td><td style={style.table.td} colSpan={4}>■ 2차 성과 평가연도&nbsp;:&nbsp;{endyear}</td><td></td>
                   </tr>
                   <tr>
-                    <td></td><td style={Object.assign({}, style.table.td, style.table.tdU)} colSpan={2}>■ 2차 성과 평가결과&nbsp;:&nbsp;{endresult}</td><td></td>
+                    <td></td><td style={Object.assign({}, style.table.td, style.table.tdU)} colSpan={4}>■ 2차 성과 평가결과&nbsp;:&nbsp;{endresult}</td><td></td>
                   </tr>
                   <tr>
-                    <td style={style.table.tdS} colSpan={4}></td>
+                    <td style={style.table.tdS} colSpan={6}></td>
                   </tr>
                   <tr>
-                    <td></td><td style={Object.assign({}, style.table.td, style.table.tdT)} colSpan={2}>■ 재무성과(백만원)&nbsp;:&nbsp;{numbertoCommas(result)}</td><td></td>
+                    <td></td><td style={Object.assign({}, style.table.td, style.table.tdT)} colSpan={4}>■ 재무성과(백만원)&nbsp;:&nbsp;{numbertoCommas(result)}</td><td></td>
                   </tr>
                   <tr>
-                    <td></td><td style={style.table.td} colSpan={2}>■ 관리지표&nbsp;:&nbsp;{indi[0]}</td><td></td>
+                    <td></td><td style={style.table.td} colSpan={4}>■ 관리지표 1&nbsp;:&nbsp;{indi[0]}</td><td></td>
                   </tr>
                   <tr>
-                    <td></td><td style={style.table.tde} colSpan={2}>○ 단위&nbsp;:&nbsp;{unit[0]}</td><td></td>
+                    <td></td><td style={Object.assign({}, style.table.tdML, style.table.tdI)} colSpan={2}>○ 단위&nbsp;:&nbsp;{unit[0]}</td><td style={Object.assign({}, style.table.tdMR)} colSpan={2}>○ 수치&nbsp;:&nbsp;{datay0[0]}</td><td></td>
                   </tr>
                   <tr>
-                    <td></td><td style={Object.assign({}, style.table.tde2)} colSpan={2}>○ 수치&nbsp;:&nbsp;{datay0[0]}</td><td></td>
+                    <td></td><td style={style.table.td} colSpan={4}>■ 관리지표 2&nbsp;:&nbsp;{indi[1]}</td><td></td>
+                  </tr>
+                  <tr>
+                    <td></td><td style={Object.assign({}, style.table.tdML, style.table.tdI)} colSpan={2}>○ 단위&nbsp;:&nbsp;{unit[1]}</td><td style={Object.assign({}, style.table.tdMR)} colSpan={2}>○ 수치&nbsp;:&nbsp;{datay0[1]}</td><td></td>
+                  </tr>
+                  <tr>
+                    <td></td><td style={style.table.td} colSpan={4}>■ 관리지표 3&nbsp;:&nbsp;{indi[1]}</td><td></td>
+                  </tr>
+                  <tr>
+                    <td></td><td style={Object.assign({}, style.table.tdBL, style.table.tdBP, style.table.tdI)} colSpan={2}>○ 단위&nbsp;:&nbsp;{unit[2]}</td><td style={Object.assign({}, style.table.tdBR, style.table.tdBP)} colSpan={2}>○ 수치&nbsp;:&nbsp;{datay0[2]}</td><td></td>
                   </tr>
                 </>
               ) : (
                 <>
                   <tr>
-                    <td></td><td style={Object.assign({}, style.table.tdTL)}>■ 1차완료 평가연도&nbsp;:&nbsp;{startcompyear}</td><td style={Object.assign({}, style.table.tdTR)}>■ 1차완료 평가결과&nbsp;:&nbsp;{startcompresult}</td><td></td>
+                    <td></td><td style={Object.assign({}, style.table.tdTL)} colSpan={2}>■ 1차완료 평가연도&nbsp;:&nbsp;{startcompyear}</td><td style={Object.assign({}, style.table.tdTR)} colSpan={2}>■ 1차완료 평가결과&nbsp;:&nbsp;{startcompresult}</td><td></td>
                   </tr>
                   <tr>
-                    <td></td><td style={Object.assign({}, style.table.tdML)}>■ 2차완료 평가연도&nbsp;:&nbsp;{endcompyear}</td><td style={Object.assign({}, style.table.tdMR)}>■ 2차완료 평가결과&nbsp;:&nbsp;{endcompresult}</td><td></td>
+                    <td></td><td style={Object.assign({}, style.table.tdML)} colSpan={2}>■ 2차완료 평가연도&nbsp;:&nbsp;{endcompyear}</td><td style={Object.assign({}, style.table.tdMR)} colSpan={2}>■ 2차완료 평가결과&nbsp;:&nbsp;{endcompresult}</td><td></td>
                   </tr>
                   <tr>
-                    <td></td><td style={Object.assign({}, style.table.tdML)}>■ 1차 성과 평가연도&nbsp;:&nbsp;{startyear}</td><td style={Object.assign({}, style.table.tdMR)}>■ 1차 성과 평가결과&nbsp;:&nbsp;{startresult}</td><td></td>
+                    <td></td><td style={Object.assign({}, style.table.tdML)} colSpan={2}>■ 1차 성과 평가연도&nbsp;:&nbsp;{startyear}</td><td style={Object.assign({}, style.table.tdMR)} colSpan={2}>■ 1차 성과 평가결과&nbsp;:&nbsp;{startresult}</td><td></td>
                   </tr>
                   <tr>
-                    <td></td><td style={Object.assign({}, style.table.tdBL)}>■ 2차 성과 평가연도&nbsp;:&nbsp;{endyear}</td><td style={Object.assign({}, style.table.tdBR)}>■ 2차 성과 평가결과&nbsp;:&nbsp;{endresult}</td><td></td>
+                    <td></td><td style={Object.assign({}, style.table.tdBL)} colSpan={2}>■ 2차 성과 평가연도&nbsp;:&nbsp;{endyear}</td><td style={Object.assign({}, style.table.tdBR)} colSpan={2}>■ 2차 성과 평가결과&nbsp;:&nbsp;{endresult}</td><td></td>
                   </tr>
                   <tr>
-                    <td style={style.table.tdS} colSpan={4}></td>
+                    <td style={style.table.tdS} colSpan={6}></td>
                   </tr>
                   <tr>
-                    <td></td><td style={Object.assign({}, style.table.td, style.table.tdT)} colSpan={2}>■ 재무성과(백만원)&nbsp;:&nbsp;{numbertoCommas(result)}</td><td></td>
+                    <td></td><td style={Object.assign({}, style.table.td, style.table.tdT)} colSpan={4}>■ 재무성과(백만원)&nbsp;:&nbsp;{numbertoCommas(result)}</td><td></td>
+                  </tr>
+
+                  <tr>
+                    <td></td><td style={style.table.tdML} colSpan={2}>■ 관리지표 1&nbsp;:&nbsp;{indi[0]}</td><td style={style.table.tdM} >○ 단위&nbsp;:&nbsp;{unit[0]}</td><td style={style.table.tdMR} >○ 수치&nbsp;:&nbsp;{datay0[0]}</td><td></td>
                   </tr>
                   <tr>
-                    <td></td><td style={style.table.td} colSpan={2}>■ 관리지표&nbsp;:&nbsp;{indi[0]}</td><td></td>
+                    <td></td><td style={style.table.tdML} colSpan={2}>■ 관리지표 2&nbsp;:&nbsp;{indi[1]}</td><td style={style.table.tdM} >○ 단위&nbsp;:&nbsp;{unit[1]}</td><td style={style.table.tdMR} >○ 수치&nbsp;:&nbsp;{datay0[1]}</td><td></td>
                   </tr>
                   <tr>
-                    <td></td><td style={style.table.tdBL} >○ 단위&nbsp;:&nbsp;{unit[0]}</td><td style={style.table.tdBR} >○ 수치&nbsp;:&nbsp;{datay0[0]}</td><td></td>
+                    <td></td><td style={style.table.tdBL} colSpan={2}>■ 관리지표 3&nbsp;:&nbsp;{indi[2]}</td><td style={style.table.tdMB} >○ 단위&nbsp;:&nbsp;{unit[2]}</td><td style={style.table.tdBR} >○ 수치&nbsp;:&nbsp;{datay0[2]}</td><td></td>
                   </tr>
+
                 </>
               )}
 
 
               <tr>
-                <td style={style.table.tdS} colSpan={4}></td>
+                <td style={style.table.tdS} colSpan={6}></td>
               </tr>
 
               <tr>
-                <td></td><td style={Object.assign({}, style.table.td, style.table.tdR)} colSpan={2}>■ 개선 전 주요내용&nbsp;:&nbsp;{before}</td><td></td>
+                <td></td><td style={Object.assign({}, style.table.td, style.table.tdR)} colSpan={4}>■ 개선 전 주요내용&nbsp;:&nbsp;{before}</td><td></td>
               </tr>
 
               <tr>
-                <td style={style.table.tdS} colSpan={4}></td>
+                <td style={style.table.tdS} colSpan={6}></td>
               </tr>
 
               <tr>
-                <td></td><td style={Object.assign({}, style.table.td, style.table.tdR)} colSpan={2}>■ 개선 후 주요내용&nbsp;:&nbsp;{after}</td><td></td>
+                <td></td><td style={Object.assign({}, style.table.td, style.table.tdR)} colSpan={4}>■ 개선 후 주요내용&nbsp;:&nbsp;{after}</td><td></td>
               </tr>
 
               <tr>
-                <th colSpan={3} style={style.table.foot}></th>
+                <th colSpan={6} style={style.table.foot}></th>
               </tr>
             </tbody>
           </table>
