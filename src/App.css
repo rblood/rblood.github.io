@@ -189,7 +189,7 @@
   width: 46px;
   height: 46px !important;
   border: none;
-  background-color: #fff;
+  background-color: transparent;
   z-index: 1;
   border-bottom-right-radius: 8px;
 }
