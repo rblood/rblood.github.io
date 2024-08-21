@@ -589,7 +589,7 @@
 
 .total,
 .users {
-  margin-top: 48px;
+  margin-top: 16px;
   margin-bottom: 16px;
   width: 100%;
 }
@@ -1190,11 +1190,6 @@ i {
 
   .formWrap.empty {
     display: none;
-  }
-
-  .total,
-  .users {
-    margin-top: 16px !important;
   }
 
   .nav {
