@@ -146,10 +146,10 @@ const App = (props) => {
     }
   };
 
-  const numbertoCommas = (number)=>{
+  const numbertoCommas = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   }
-  
+
   const useYearRange = useCallback((start, end) => {
     const yearArray = [];
     for (let year = start; year <= end; year++) {
@@ -165,7 +165,7 @@ const App = (props) => {
       [name]: value
     }));
   }, []);
-  
+
 
   const memoizedResult = useMemo(() => {
     return _.filter(data, function (o) {
@@ -189,7 +189,7 @@ const App = (props) => {
   const handleSearch = useCallback(() => {
     setResult(memoizedResult);
   }, [memoizedResult]);
-  
+
 
   const onDownload = useCallback(() => {
     const table = tableRef.current.cloneNode(true);
@@ -283,7 +283,7 @@ const App = (props) => {
       onLoad();
     }
     // useEffect 종속성 배열
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.length, history, location.state, onLoad]);
   //}, [data.length, handleSearch, history, location.state, onLoad]);
 
@@ -570,15 +570,18 @@ const App = (props) => {
             </div>
 
             <div className='controll'>
-              {/*<button className="button reset" onClick={resetFilters} title="검색 조건 초기화" >초기화</button>*/}
-              <button className="button search" onClick={handleSearch}>검색</button>
-              {!isMobile && (
-                <>
-                  <button className="button excel" onClick={onDownload} title="Excel다운로드" disabled={result.length <= 0}>엑셀다운</button>
-                  <button className="button print" onClick={onPrint} title="관리대장인쇄" disabled={result.length <= 0}>인쇄</button>
-                </>
-              )}
+              <div className='buttonContainer'>
+                {/*<button className="button reset" onClick={resetFilters} title="검색 조건 초기화" >초기화</button>*/}
+                <button className="button search" onClick={handleSearch}>검색</button>
+                {!isMobile && (
+                  <>
+                    <button className="button excel" onClick={onDownload} title="Excel다운로드" disabled={result.length <= 0}>엑셀저장</button>
+                    <button className="button print" onClick={onPrint} title="관리대장인쇄" disabled={result.length <= 0}>인쇄</button>
+                  </>
+                )}
+              </div>
             </div>
+
           </div>
           <div className='tableContents'>
             <table ref={tableRef} style={style.table}>

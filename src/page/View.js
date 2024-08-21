@@ -95,7 +95,7 @@ const App = (props) => {
       tdT: {
         borderRadius: "8px 8px 0 0",
         borderTop: "1px solid rgba(0,0,0,0.16)",
-        paddingTop : isMobile ? "16px" : "0px",
+        paddingTop: isMobile ? "16px" : "0px",
       },
       tdU: {
         padding: "0px 16px",
@@ -107,7 +107,7 @@ const App = (props) => {
 
         borderRadius: "0 0 8px 8px",
         borderBottom: "1px solid rgba(0,0,0,0.16)",
-        paddingBottom : isMobile ? "16px" : "0px",
+        paddingBottom: isMobile ? "16px" : "0px",
       },
       tdML: {
         padding: "0px 16px",
@@ -287,8 +287,10 @@ const App = (props) => {
     <div className='view'>
       <div className='users'>
         <div className='controll'>
-          <button className={'button back'} onClick={onBack}>이전</button>
-          {!isMobile && <button className={'button'} onClick={onPrint}>인쇄</button>}
+          <div className='buttonContainer'>
+            <button className={'button back'} onClick={onBack}>이전</button>
+            {!isMobile && <button className={'button'} onClick={onPrint}>인쇄</button>}
+          </div>
         </div>
         <div className='tableContents'>
           <table ref={tableRef} style={style.table}>

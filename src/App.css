@@ -157,7 +157,7 @@
 }
 
 .editTd i {
-  color: #fff;
+  color: rgba(0,0,0,0.24);
   font-size: 21px;
   border: 1px solid rgba(0, 0, 0, 0.06);
   padding: 2px;
@@ -166,7 +166,7 @@
 }
 
 .detailTd i {
-  color: #fff;
+  color: rgba(0,0,0,0.24);
   font-size: 21px;
   border: 1px solid rgba(0, 0, 0, 0.06);
   padding: 2px;
@@ -477,7 +477,6 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 8px;
   z-index: 1;
   margin-bottom: 16px;
 }
@@ -492,8 +491,15 @@
 }
 
 
-.controll .button {
+/*.controll .button {
   width: 120px;
+}*/
+
+.controll .buttonContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  min-width: 378px;
 }
 
 .controll .sign {
@@ -571,6 +577,11 @@
   align-items: center;
 }
 
+.resultHead .titleDate {
+  font-size: 12px;
+  color: #dba504;
+}
+
 .resultRight {
   display: flex;
   flex-direction: row;
@@ -633,7 +644,6 @@
 .nav .navButton {
   text-decoration: none;
   background-color: #005aa0;
-  padding: 0 24px;
   border: 0;
   height: 100%;
   display: flex;
@@ -1011,19 +1021,17 @@ tbody tr:hover td.delTd{
   background: #4c4c4c;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
   border: 1px solid rgba(0, 0, 0, 0.16);
-  padding: 0 16px;
 }
 
 .excel {
   background: #107c41;
 }
 
-.search i {
+.button i {
   font-size: 21px;
   color: #fff;
+  margin-right: 4px;
 }
 
 .searchForm .label,
@@ -1119,6 +1127,10 @@ select:-moz-focusring {
   text-shadow: 0 0 0 #000;
 }
 
+i {
+  font-weight: 100;
+}
+
 @media (max-width: 459.9px) {
 
   .headGroup {
@@ -1197,8 +1209,11 @@ select:-moz-focusring {
     border-top: 1px solid rgba(0, 0, 0, 0.64);
   }
 
-  .controll .button {
+  /*.controll .button {
     width: 100% !important;
+  }*/
+  .controll .buttonContainer {
+    width: 100%;
   }
 
   .delTd {

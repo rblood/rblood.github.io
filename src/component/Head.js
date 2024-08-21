@@ -39,7 +39,7 @@ const App = (props) => {
           {isMobile && <button className='logout' onClick={logOut} title="로그아웃"><i className="ri-logout-box-r-line"></i></button>}
         </div>
         <div className='navRes'>
-          <NavLink className='navButton' exact to="/" title="과제목록"><i className="ri-todo-line"></i><span>관리목록</span></NavLink>
+          <NavLink className='navButton' exact to="/" title="과제목록"><i className="ri-survey-line"></i><span>관리목록</span></NavLink>
           <NavLink className='navButton' exact to="/write" title="과제등록"><i className="ri-pencil-line"></i><span>과제등록</span></NavLink>
         </div>
         {
