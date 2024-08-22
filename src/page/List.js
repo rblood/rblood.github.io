@@ -171,12 +171,16 @@ const App = (props) => {
   }, []);
 
   // 정렬 기준 변수를 추가합니다. 초기값은 'ID'로 설정합니다.
-  //const [sortKey, setSortKey] = useState('ID');
-  const [sortKey] = useState('ID');
+  const [sortKey, setSortKey] = useState('ID');
+  //const [sortKey] = useState('ID');
   // 정렬 함수
   const sortResults = useCallback((data) => {
     //return data.sort((a, b) => a[sortKey].localeCompare(b[sortKey])); // up
-    return data.sort((a, b) => b[sortKey].localeCompare(a[sortKey])); // down
+    return data.sort((a, b) =>
+      sortKey === "DATE"
+        ? new Date(b["DATE"]) - new Date(a["DATE"])
+        : b[sortKey].localeCompare(a[sortKey])
+    );
   }, [sortKey]);
 
   const memoizedResult = useMemo(() => {
@@ -196,7 +200,6 @@ const App = (props) => {
 
       return isNumMatch && isTitleMatch && isLeaderMatch && isColorMatch && isEndCompYearMatch && isDateMatch && isStartCompResultMatch && isEndCompResultMatch && isDateMatch2 && isStartResultMatch && isEndYearMatch && isEndResultMatch;
     });
-
     return sortResults(filtered); // 필터링된 결과를 선택된 기준으로 정렬
   }, [data, filters, sortResults]);
 
@@ -285,6 +288,7 @@ const App = (props) => {
         regEndYear: searchState.regEndYear || '',
         regColor: searchState.regColor || 'all'
       });
+      setSortKey(searchState.sortKey || 'ID')
     }
 
     // 데이터가 있을 경우에만 handleSearch 호출
@@ -367,10 +371,10 @@ const App = (props) => {
       state: {
         from: location.pathname,
         userCell: item.ID,
-        searchState: { ...filters }
+        searchState: { ...filters, sortKey },
       }
     });
-  }, [history, location.pathname, filters]);
+  }, [history, location.pathname, filters, sortKey]);
 
   const onView = useCallback((item) => {
     history.push({
@@ -378,10 +382,10 @@ const App = (props) => {
       state: {
         from: location.pathname,
         userCell: item.ID,
-        searchState: { ...filters }
+        searchState: { ...filters, sortKey  },
       }
     });
-  }, [history, location.pathname, filters]);
+  }, [history, location.pathname, filters, sortKey]);
 
 
   const ItemList = useCallback(({ data }) => {
@@ -463,16 +467,16 @@ const App = (props) => {
 
             <div className='searchForm'>
               <div className='searchGroup'>
-                {/*
+                {
+                  <div className='formWrap'>
+                    <label className='label' htmlFor='SORT'>정렬기준</label>
+                    <select id="SORT" onChange={(e) => setSortKey(e.target.value)} value={sortKey || "default"}>
+                      <option value="ID">관리번호</option>
+                      <option value="DATE">등록일</option>
+                    </select>
+                  </div>
+                }
                 <div className='formWrap'>
-                  <label className='label' htmlFor='SORT'>정렬기준</label>
-                  <select id="SORT" onChange={(e) => setSortKey(e.target.value)} value={sortKey || "default"}>
-                    <option value="ID">관리번호</option>
-                    <option value="DATE">등록일</option>
-                  </select>
-                </div>
-                */}
-                <div className='formWrap span2'>
                   <label className='label' htmlFor='RT'>과제명</label>
                   <input
                     type='text'
