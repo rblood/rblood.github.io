@@ -36,7 +36,13 @@ const App = (props) => {
       <nav className='nav sub'>
         <div className='headGroup'>
           <div className='headTitle'><img src={logo} alt='MND' /><span>과제관리대장</span></div>
-          {isMobile && <button className='logout' onClick={logOut} title="로그아웃"><i className="ri-logout-box-r-line"></i></button>}
+          {
+            isMobile &&
+            <>
+              <button className='change' onClick={change} title="개인정보변경"><i className="ri-user-settings-line"></i></button>
+              <button className='logout' onClick={logOut} title="로그아웃"><i className="ri-logout-box-r-line"></i></button>
+            </>
+          }
         </div>
         <div className='navRes'>
           <NavLink className='navButton' exact to="/" title="과제목록"><i className="ri-survey-line"></i><span>관리목록</span></NavLink>
@@ -46,7 +52,7 @@ const App = (props) => {
           !isMobile &&
           <div className='headRight'>
             <span>{user && user}</span>
-            <button className='logout' onClick={change} title="개인정보변경"><i className="ri-user-settings-line"></i></button>
+            <button className='change' onClick={change} title="개인정보변경"><i className="ri-user-settings-line"></i></button>
             <button className='logout' onClick={logOut} title="로그아웃"><i className="ri-logout-box-r-line"></i></button>
           </div>
         }

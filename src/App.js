@@ -1,9 +1,9 @@
 
 import './App.css';
-import { isMobile } from 'react-device-detect';
+//import { isMobile } from 'react-device-detect';
 import { Route } from "react-router-dom";
 
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, } from 'react';
 import context from './component/Context';
 
 import Head from './component/Head';
@@ -31,25 +31,20 @@ const manageRef = collection(db, "manage");
 const App = (props) => {
   const state = useContext(context);
   const { user } = state;
-  const appClass = isMobile ? "App mobile" : "App";
 
-  useEffect(() => {
-    //console.log(props.location.pathname)
-  }, [])
   return (
-    <div className={appClass}>
+    <div className="App">
       {
         !user ?
           <Route path="/" render={() => <Sign manage={manageRef} />} /> :
           <>
-            <Head path={props.location.pathname} />
+            {props.location.pathname !== '/change' && <Head path={props.location.pathname} />}
             <main className='main'>
               <Route exact path="/" render={() => <List manage={manageRef} />} />
-              <Route path="/write" render={() => <Write manage={manageRef}/>} />
-              <Route path="/view" render={() => <View manage={manageRef}/>} />
-              <Route path="/change" render={() => <Change manage={manageRef}/>} />
+              <Route path="/write" render={() => <Write manage={manageRef} />} />
+              <Route path="/view" render={() => <View manage={manageRef} />} />
+              <Route path="/change" render={() => <Change manage={manageRef} />} />
             </main>
-            
           </>
       }
       <Foot />

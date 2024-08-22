@@ -83,7 +83,7 @@
   margin-right: 8px;
 }
 
-.logout {
+.logout, .change {
   background: transparent;
   border: none;
   color: #fff;
@@ -97,7 +97,7 @@
   padding-right: 0;
 }
 
-.logout i {
+.logout i, .change i {
   font-size: 24px;
   color: rgba(0, 0, 0, 0.48);
   padding: 8px;
@@ -157,7 +157,7 @@
 }
 
 .editTd i {
-  color: rgba(0,0,0,0.24);
+  color: rgba(0, 0, 0, 0.24);
   font-size: 21px;
   border: 1px solid rgba(0, 0, 0, 0.06);
   padding: 2px;
@@ -166,7 +166,7 @@
 }
 
 .detailTd i {
-  color: rgba(0,0,0,0.24);
+  color: rgba(0, 0, 0, 0.24);
   font-size: 21px;
   border: 1px solid rgba(0, 0, 0, 0.06);
   padding: 2px;
@@ -499,7 +499,7 @@
   display: flex;
   flex-direction: row;
   gap: 8px;
-  min-width: 378px;
+  min-width: 375px;
 }
 
 .controll .sign {
@@ -800,7 +800,7 @@ tbody tr:hover td.delTd{
   border-left: 1px solid rgba(0, 0, 0, 0.64);
   border-right: 1px solid rgba(0, 0, 0, 0.64);
   height: 56px;
-  min-width: 378px;
+  min-width: 375px;
 }
 
 .nav .navButton.menu {
@@ -1072,6 +1072,7 @@ label.radioColor {
   display: flex;
   width: 26px;
   height: 26px;
+  background-color: #efefef;
 }
 
 /*label.radioColor::after {
@@ -1102,7 +1103,11 @@ label.radioColor.yellow {
   background-size: cover;
 }
 
-.radioGroup div:first-child input[type=radio]:checked+label.radioColor {
+/*.radioGroup div:first-child input[type=radio]:checked+label.radioColor {
+  background-image: url("./assets/check-fill2.png");
+}*/
+
+.radioGroup div input[type=radio][value=""]:checked+label.radioColor {
   background-image: url("./assets/check-fill2.png");
 }
 
@@ -1139,11 +1144,19 @@ i {
 @media (max-width: 459.9px) {
 
   .headGroup {
-
-
     display: grid;
-    grid-template-columns: 56px auto 56px;
+    grid-template-columns: 96px auto 48px 48px;
     width: 100%;
+  }
+
+  .headGroup .change {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .headGroup .logout {
+    grid-column: 4;
+    grid-row: 1;
   }
 
   .label {
@@ -1169,6 +1182,10 @@ i {
   .login {
     height: 100% !important;
     padding: 16px !important;
+  }
+
+  .login.change div {
+    width: inherit;
   }
 
   .resultContainer,

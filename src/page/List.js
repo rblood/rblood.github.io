@@ -57,7 +57,7 @@ const App = (props) => {
   const endCompResultArray = ["완료", "조건부완료", "중단", "연장", "1차완료", "미평가"];
   const startResultArray = ["인증", "인증 (대상)", "인증 (금상)", "인증 (은상)", "인증 (동상)", "인증 (장려)", "미인증 (중단)", "미인증 (재도전)"];
   const endResultArray = ["인증", "인증 (대상)", "인증 (금상)", "인증 (은상)", "인증 (동상)", "인증 (장려)", "미인증 (중단)", "1차인증"];
-  const colorArray = ["", "all", "red", "green", "yellow"];
+  const colorArray = ["all", "", "red", "green", "yellow"];
 
   const minYear = year.min;
   const maxYear = year.max;

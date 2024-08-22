@@ -23,6 +23,10 @@ const App = (props) => {
     }));
   }, []);
 
+  const onBack = () => {
+    history.goBack();
+  };
+
 
   const onUpdate = useCallback(async () => {
     try {
@@ -45,7 +49,7 @@ const App = (props) => {
   return (
     <div className='container'>
       <div className='login change'>
-      <h2 className='title'>개인정보변경</h2>
+        <h2 className='title'>개인정보변경</h2>
         <div>
           <form onSubmit={(e) => { e.preventDefault(); }}>
             <div className='armyWrap'>
@@ -73,13 +77,14 @@ const App = (props) => {
                   autoComplete="off"
                   value={pw}
                 />
-                <span className={'vali'}>'변경완료후 로그인을 해주세요'</span>
+                <span className={'vali'}>'아이디와 비밀번호는 최대 12자리 입니다.'</span>
               </div>
             </div>
             <div className='controll'>
-              <button className={'button sign'} type="button" onClick={onUpdate} disabled={!number || !pw}>
-                변경
-              </button>
+              <div className='buttonContainer'>
+                <button className={'button back'} onClick={onBack}>이전</button>
+                <button className={'button sign'} type="button" onClick={onUpdate} disabled={!number || !pw}>변경</button>
+              </div>
             </div>
           </form>
         </div>
