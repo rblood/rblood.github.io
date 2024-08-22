@@ -171,7 +171,8 @@ const App = (props) => {
   }, []);
 
   // 정렬 기준 변수를 추가합니다. 초기값은 'ID'로 설정합니다.
-  const [sortKey, setSortKey] = useState('ID');
+  //const [sortKey, setSortKey] = useState('ID');
+  const [sortKey] = useState('ID');
   // 정렬 함수
   const sortResults = useCallback((data) => {
     //return data.sort((a, b) => a[sortKey].localeCompare(b[sortKey])); // up
