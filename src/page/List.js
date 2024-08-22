@@ -32,6 +32,8 @@ const App = (props) => {
     regColor: 'all'
   });
 
+
+
   const { startYear, endYear, startcompresult, endcompresult, startResult, endResult, startResult2, endResult2, regNum, regTitle, regLeader, regEndCompYear, regEndYear, regColor } = filters;
 
   // 필터 중 하나라도 활성화되었는지 확인하는 유틸리티 함수
@@ -168,26 +170,34 @@ const App = (props) => {
     }));
   }, []);
 
-
+  // 정렬 기준 변수를 추가합니다. 초기값은 'ID'로 설정합니다.
+  const [sortKey, setSortKey] = useState('ID');
+  // 정렬 함수
+  const sortResults = useCallback((data) => {
+    //return data.sort((a, b) => a[sortKey].localeCompare(b[sortKey])); // up
+    return data.sort((a, b) => b[sortKey].localeCompare(a[sortKey])); // down
+  }, [sortKey]);
 
   const memoizedResult = useMemo(() => {
-    return _.filter(data, function (o) {
-      const isNumMatch = !regNum || o.ID.includes(regNum);
-      const isTitleMatch = !regTitle || o.TITLE.replace(/\s+/g, '').includes(regTitle.replace(/\s+/g, ''));
-      const isEndCompYearMatch = !regEndCompYear || o.ENDCOMPYEAR.replace(/\s+/g, '').includes(regEndCompYear.replace(/\s+/g, ''));
-      const isLeaderMatch = !regLeader || o.LEADER.replace(/\s+/g, '').includes(regLeader.replace(/\s+/g, ''));
-      const isColorMatch = regColor === 'all' || o.COLOR === regColor;
-      const isDateMatch = (startYear === 'all' || (o.STARTCOMPYEAR >= startYear && o.STARTCOMPYEAR <= endYear)) && (endYear === 'all' || (o.STARTCOMPYEAR <= endYear));
-      const isStartCompResultMatch = startcompresult === 'all' || o.STARTCOMPRESULT === startcompresult;
-      const isEndCompResultMatch = endcompresult === 'all' || o.ENDCOMPRESULT === endcompresult;
-      const isDateMatch2 = (startResult === 'all' || (o.STARTYEAR >= startResult && o.STARTYEAR <= endResult)) && (endResult === 'all' || (o.STARTYEAR <= endResult));
-      const isStartResultMatch = startResult2 === 'all' || o.STARTRESULT === startResult2;
-      const isEndYearMatch = !regEndYear || o.ENDYEAR.replace(/\s+/g, '').includes(regEndYear.replace(/\s+/g, ''));
-      const isEndResultMatch = endResult2 === 'all' || o.ENDRESULT === endResult2;
+    const filtered = _.filter(data, function (o) {
+      const isNumMatch = !filters.regNum || o.ID.includes(filters.regNum);
+      const isTitleMatch = !filters.regTitle || o.TITLE.replace(/\s+/g, '').includes(filters.regTitle.replace(/\s+/g, ''));
+      const isEndCompYearMatch = !filters.regEndCompYear || o.ENDCOMPYEAR.replace(/\s+/g, '').includes(filters.regEndCompYear.replace(/\s+/g, ''));
+      const isLeaderMatch = !filters.regLeader || o.LEADER.replace(/\s+/g, '').includes(filters.regLeader.replace(/\s+/g, ''));
+      const isColorMatch = filters.regColor === 'all' || o.COLOR === filters.regColor;
+      const isDateMatch = (filters.startYear === 'all' || (o.STARTCOMPYEAR >= filters.startYear && o.STARTCOMPYEAR <= filters.endYear)) && (filters.endYear === 'all' || (o.STARTCOMPYEAR <= filters.endYear));
+      const isStartCompResultMatch = filters.startcompresult === 'all' || o.STARTCOMPRESULT === filters.startcompresult;
+      const isEndCompResultMatch = filters.endcompresult === 'all' || o.ENDCOMPRESULT === filters.endcompresult;
+      const isDateMatch2 = (filters.startResult === 'all' || (o.STARTYEAR >= filters.startResult && o.STARTYEAR <= filters.endResult)) && (filters.endResult === 'all' || (o.STARTYEAR <= filters.endResult));
+      const isStartResultMatch = filters.startResult2 === 'all' || o.STARTRESULT === filters.startResult2;
+      const isEndYearMatch = !filters.regEndYear || o.ENDYEAR.replace(/\s+/g, '').includes(filters.regEndYear);
+      const isEndResultMatch = filters.endResult2 === 'all' || o.ENDRESULT === filters.endResult2;
 
       return isNumMatch && isTitleMatch && isLeaderMatch && isColorMatch && isEndCompYearMatch && isDateMatch && isStartCompResultMatch && isEndCompResultMatch && isDateMatch2 && isStartResultMatch && isEndYearMatch && isEndResultMatch;
     });
-  }, [data, regNum, regTitle, regEndCompYear, regLeader, regColor, startYear, endYear, startcompresult, endcompresult, startResult, endResult, startResult2, regEndYear, endResult2]);
+
+    return sortResults(filtered); // 필터링된 결과를 선택된 기준으로 정렬
+  }, [data, filters, sortResults]);
 
   const handleSearch = useCallback(() => {
     setResult(memoizedResult);
@@ -447,9 +457,21 @@ const App = (props) => {
 
         <div>
           <div style={{ display: data.length > 0 ? 'block' : 'none' }}>
+
+
+
             <div className='searchForm'>
               <div className='searchGroup'>
-                <div className='formWrap span2'>
+
+                <div className='formWrap'>
+                  <label className='label' htmlFor='SORT'>정렬기준</label>
+                  <select id="SORT" onChange={(e) => setSortKey(e.target.value)} value={sortKey || "default"}>
+                    <option value="ID">관리번호</option>
+                    <option value="DATE">등록일</option>
+                  </select>
+                </div>
+
+                <div className='formWrap'>
                   <label className='label' htmlFor='RT'>과제명</label>
                   <input
                     type='text'
@@ -487,7 +509,7 @@ const App = (props) => {
                       <option value={item} key={item}>{item}</option>
                     ))}
                   </select>
-                  <span className='space' style={{display:startYear === 'all' && 'none'}}>~</span>
+                  <span className='space' style={{ display: startYear === 'all' && 'none' }}>~</span>
                   <select id="EY" name="endYear" onChange={handleFilterChange} value={endYear} style={{ display: startYear === 'all' && 'none' }}>
 
                     {useYearRange(startYear, maxYear).map((item) => (
