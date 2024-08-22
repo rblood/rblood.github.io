@@ -34,7 +34,7 @@ const App = (props) => {
 
 
 
-  const { startYear, endYear, startcompresult, endcompresult, startResult, endResult, startResult2, endResult2, regNum, regTitle, regLeader, regEndCompYear, regEndYear, regColor } = filters;
+  const { startYear, endYear, startcompresult, endcompresult, startResult, endResult, startResult2, endResult2, regTitle, regLeader, regEndCompYear, regEndYear, regColor } = filters;
 
   // 필터 중 하나라도 활성화되었는지 확인하는 유틸리티 함수
   /*
