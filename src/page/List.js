@@ -462,7 +462,7 @@ const App = (props) => {
 
             <div className='searchForm'>
               <div className='searchGroup'>
-
+                {/*
                 <div className='formWrap'>
                   <label className='label' htmlFor='SORT'>정렬기준</label>
                   <select id="SORT" onChange={(e) => setSortKey(e.target.value)} value={sortKey || "default"}>
@@ -470,8 +470,8 @@ const App = (props) => {
                     <option value="DATE">등록일</option>
                   </select>
                 </div>
-
-                <div className='formWrap'>
+                */}
+                <div className='formWrap span2'>
                   <label className='label' htmlFor='RT'>과제명</label>
                   <input
                     type='text'
