@@ -27,7 +27,7 @@ import { getFirestore, collection } from 'firebase/firestore';
 const app = firebase;
 const db = getFirestore(app);
 const manageRef = collection(db, "manage");
-
+console.log("Firebase API Key:", process.env);
 const App = (props) => {
   const state = useContext(context);
   const { user } = state;
