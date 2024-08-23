@@ -1153,7 +1153,6 @@ table thead th i{
 
 table thead th:nth-child(-n+14) {
   cursor: pointer;
-  background-color: #eaeaea !important;
 }
 
 @media (max-width: 459.9px) {
@@ -1334,10 +1333,6 @@ table thead th:nth-child(-n+14) {
   tr {
     page-break-inside: avoid !important;
     /* 행이 페이지를 넘어가면 나누지 않음 */
-  }
-
-  table thead th:nth-child(-n+14) {
-    background-color: #efefef !important;
   }
 
 }
