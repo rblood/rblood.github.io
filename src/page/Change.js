@@ -77,7 +77,7 @@ const App = (props) => {
                   autoComplete="off"
                   value={pw}
                 />
-                <span className={'vali'}>'아이디와 비밀번호는 최대 12자리 입니다.'</span>
+                <span className={'vali'}>아이디와 비밀번호는 최대 12자리 입니다.</span>
               </div>
             </div>
             <div className='controll'>
