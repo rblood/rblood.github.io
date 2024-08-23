@@ -98,26 +98,7 @@ const App = (props) => {
           width: "180px"
         },
         w304: {
-          width: "304px"
-        },
-        th: {
-          background: "#efefef",
-          border: isMobile ? "1px solid #d3d3d3" : "0.5pt solid #d3d3d3",
-          fontWeight: "400",
-          padding: "6px 4px",
-          height: "51px",
-          minHeight: "51px",
-          borderBottom: isMobile ? "1px solid #ccc" : "0.5pt solid #ccc",
-          wordBreak: "keep-all",
-          whiteSpace: "normal",
-          overflowWrap: "anywhere",
-        },
-        thE: {
-          width: isMobile ? "0pt" : "0.5pt",
-        },
-        tdE: {
-          height: "51px",
-          minHeight: "51px",
+          width: "300px"
         },
         td: {
           border: isMobile ? "1px solid #d3d3d3" : "0.5pt solid #d3d3d3",
@@ -130,6 +111,18 @@ const App = (props) => {
           whiteSpace: "normal",
           overflowWrap: "anywhere",
         },
+        th: {
+          background: "#efefef",
+          borderBottom: isMobile ? "1px solid #ccc" : "0.5pt solid #ccc",
+        },
+        thE: {
+          width: isMobile ? "0pt" : "0.5pt",
+        },
+        tdE: {
+          height: "51px",
+          minHeight: "51px",
+        },
+        
         tdRed: {
           background: "#D01414",
           borderBottom: isMobile ? "1px solid rgba(0,0,0,0.3)" : "0.5pt solid rgba(0,0,0,0.3)",
@@ -382,7 +375,7 @@ const App = (props) => {
           border: 0 !important;
         }
         th, td {
-          border-color: #333 !important;
+          border-color: #303038 !important;
         }
         @page {
             size: A3 landscape !important;
@@ -652,7 +645,7 @@ const App = (props) => {
                 <col width="70px" />
                 <col width="70px" />
                 <col width="50px" />
-                <col width="304px" />
+                <col width="300px" />
                 <col width="54px" />
                 <col width="70px" />
                 <col width="70px" />
@@ -680,28 +673,28 @@ const App = (props) => {
                   <td colSpan="22" style={style.table.caption} className='caption'>과제관리대장</td>
                 </tr>
                 <tr>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("ID") }}>관리번호{renderSortIcon("ID")}</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("CHECKNUM") }}>확인번호{renderSortIcon("CHECKNUM")}</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w50)} onClick={() => { handleSort("LEADER") }}>팀장{renderSortIcon("LEADER")}</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w304)} onClick={() => { handleSort("TITLE") }}>과제명{renderSortIcon("TITLE")}</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w54)} onClick={() => { handleSort("STARTCOMPYEAR") }}>1차완료<br />평가연도{renderSortIcon("STARTCOMPYEAR")}</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("STARTCOMPRESULT") }}>1차완료<br />평가결과{renderSortIcon("STARTCOMPRESULT")}</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("ENDCOMPYEAR") }}>2차완료<br />평가연도{renderSortIcon("ENDCOMPYEAR")}</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("ENDCOMPRESULT") }}>2차완료<br />평가결과{renderSortIcon("ENDCOMPRESULT")}</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w54)} onClick={() => { handleSort("STARTYEAR") }}>1차성과<br />평가연도{renderSortIcon("STARTYEAR")}</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("STARTRESULT") }}>1차성과<br />평가결과{renderSortIcon("STARTRESULT")}</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("ENDYEAR") }}>2차성과<br />평가연도{renderSortIcon("ENDYEAR")}</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("ENDRESULT") }}>2차성과<br />평가결과{renderSortIcon("ENDRESULT")}</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("RESULT") }}>재무성과<br />(백만원){renderSortIcon("RESULT")}</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w54)} onClick={() => { handleSort("COLOR") }}>사후<br />관리상태{renderSortIcon("COLOR")}</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w180)}>관리지표</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w48)}>단위</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w54)}>수치</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w54)}>Y+1</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w54)}>Y+2</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w54)}>Y+3</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w54)}>Y+4</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w54)}>Y+5</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w70)} onClick={() => { handleSort("ID") }}>관리번호{renderSortIcon("ID")}</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w70)} onClick={() => { handleSort("CHECKNUM") }}>확인번호{renderSortIcon("CHECKNUM")}</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w50)} onClick={() => { handleSort("LEADER") }}>팀장{renderSortIcon("LEADER")}</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w304)} onClick={() => { handleSort("TITLE") }}>과제명{renderSortIcon("TITLE")}</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w54)} onClick={() => { handleSort("STARTCOMPYEAR") }}>1차완료<br />평가연도{renderSortIcon("STARTCOMPYEAR")}</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w70)} onClick={() => { handleSort("STARTCOMPRESULT") }}>1차완료<br />평가결과{renderSortIcon("STARTCOMPRESULT")}</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w70)} onClick={() => { handleSort("ENDCOMPYEAR") }}>2차완료<br />평가연도{renderSortIcon("ENDCOMPYEAR")}</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w70)} onClick={() => { handleSort("ENDCOMPRESULT") }}>2차완료<br />평가결과{renderSortIcon("ENDCOMPRESULT")}</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w54)} onClick={() => { handleSort("STARTYEAR") }}>1차성과<br />평가연도{renderSortIcon("STARTYEAR")}</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w70)} onClick={() => { handleSort("STARTRESULT") }}>1차성과<br />평가결과{renderSortIcon("STARTRESULT")}</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w70)} onClick={() => { handleSort("ENDYEAR") }}>2차성과<br />평가연도{renderSortIcon("ENDYEAR")}</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w70)} onClick={() => { handleSort("ENDRESULT") }}>2차성과<br />평가결과{renderSortIcon("ENDRESULT")}</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w70)} onClick={() => { handleSort("RESULT") }}>재무성과<br />(백만원){renderSortIcon("RESULT")}</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w54)} onClick={() => { handleSort("COLOR") }}>사후<br />관리상태{renderSortIcon("COLOR")}</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w180)}>관리지표</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w48)}>단위</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w54)}>수치</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w54)}>Y+1</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w54)}>Y+2</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w54)}>Y+3</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w54)}>Y+4</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w54)}>Y+5</th>
                   <th style={style.table.th} className='printHide'>수정</th>
                   <th style={style.table.th} className='printHide'>출력</th>
                 </tr>
