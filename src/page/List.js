@@ -695,8 +695,8 @@ const App = (props) => {
                   <th style={Object.assign({}, style.table.td, style.table.th, style.table.w54)}>Y+3</th>
                   <th style={Object.assign({}, style.table.td, style.table.th, style.table.w54)}>Y+4</th>
                   <th style={Object.assign({}, style.table.td, style.table.th, style.table.w54)}>Y+5</th>
-                  <th style={style.table.th} className='printHide'>수정</th>
-                  <th style={style.table.th} className='printHide'>출력</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th)} className='printHide'>수정</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th)} className='printHide'>출력</th>
                 </tr>
               </thead>
               <tbody>
