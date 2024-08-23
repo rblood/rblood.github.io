@@ -1139,7 +1139,22 @@ select:-moz-focusring {
 i {
   font-weight: 100;
 }
+table thead th {
+  position: relative;
+}
 
+table thead th i{
+  position: absolute;
+  right: 0;
+  top: 2px;
+  font-size: 12px;
+  color: #898989;
+}
+
+table thead th:nth-child(-n+14) {
+  cursor: pointer;
+  background-color: #e1e1e1 !important;
+}
 
 @media (max-width: 459.9px) {
 
@@ -1319,6 +1334,10 @@ i {
   tr {
     page-break-inside: avoid !important;
     /* 행이 페이지를 넘어가면 나누지 않음 */
+  }
+
+  table thead th:nth-child(-n+14) {
+    background-color: #efefef !important;
   }
 
 }

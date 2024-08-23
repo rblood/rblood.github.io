@@ -172,16 +172,43 @@ const App = (props) => {
 
   // 정렬 기준 변수를 추가합니다. 초기값은 'ID'로 설정합니다.
   const [sortKey, setSortKey] = useState('ID');
-  //const [sortKey] = useState('ID');
+  const [sortOrder, setSortOrder] = useState('desc'); // 'asc' for ascending, 'desc' for descending
+
   // 정렬 함수
   const sortResults = useCallback((data) => {
-    //return data.sort((a, b) => a[sortKey].localeCompare(b[sortKey])); // up
-    return data.sort((a, b) =>
-      sortKey === "DATE"
-        ? new Date(b["DATE"]) - new Date(a["DATE"])
-        : b[sortKey].localeCompare(a[sortKey])
-    );
-  }, [sortKey]);
+    return data.sort((a, b) => {
+      const valueA = a[sortKey] || '';
+      const valueB = b[sortKey] || '';
+
+      let comparison = 0;
+      if (sortKey === "DATE") {
+        comparison = new Date(valueA) - new Date(valueB);
+      } else if (typeof valueA === 'string') {
+        comparison = valueA.localeCompare(valueB);
+      } else {
+        comparison = valueA > valueB ? 1 : (valueA < valueB ? -1 : 0);
+      }
+
+      return sortOrder === 'asc' ? comparison : -comparison;
+    });
+  }, [sortKey, sortOrder]);
+
+  // 클릭 시 정렬 기준 및 방향 변경
+  const handleSort = (key) => {
+    if (sortKey === key) {
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortKey(key);
+      setSortOrder('desc');
+    }
+  };
+
+  const renderSortIcon = (key) => {
+    if (sortKey === key) {
+      return sortOrder === 'asc' ? < i className="ri-sort-asc" /> : < i className="ri-sort-desc" />;
+    }
+    return null;
+  };
 
   const memoizedResult = useMemo(() => {
     const filtered = _.filter(data, function (o) {
@@ -269,6 +296,11 @@ const App = (props) => {
   }, [onLoad]);
 
   useEffect(() => {
+    handleSearch();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sortKey, sortOrder]);
+
+  useEffect(() => {
     // location.state에 searchState가 있을 경우 상태를 복원
     if (location.state && location.state.searchState) {
       const { searchState } = location.state;
@@ -289,6 +321,7 @@ const App = (props) => {
         regColor: searchState.regColor || 'all'
       });
       setSortKey(searchState.sortKey || 'ID')
+      setSortOrder(searchState.sortOrder || "asc")
     }
 
     // 데이터가 있을 경우에만 handleSearch 호출
@@ -301,11 +334,11 @@ const App = (props) => {
       onLoad();
     }
     // useEffect 종속성 배열
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.length, history, location.state, onLoad]);
   //}, [data.length, handleSearch, history, location.state, onLoad]);
 
-
+  
   /*
   const resetFilters = useCallback(() => {
     setFilters({
@@ -371,10 +404,10 @@ const App = (props) => {
       state: {
         from: location.pathname,
         userCell: item.ID,
-        searchState: { ...filters, sortKey },
+        searchState: { ...filters, sortKey, sortOrder },
       }
     });
-  }, [history, location.pathname, filters, sortKey]);
+  }, [history, location.pathname, filters, sortKey, sortOrder]);
 
   const onView = useCallback((item) => {
     history.push({
@@ -382,10 +415,10 @@ const App = (props) => {
       state: {
         from: location.pathname,
         userCell: item.ID,
-        searchState: { ...filters, sortKey  },
+        searchState: { ...filters, sortKey, sortOrder },
       }
     });
-  }, [history, location.pathname, filters, sortKey]);
+  }, [history, location.pathname, filters, sortKey, sortOrder]);
 
 
   const ItemList = useCallback(({ data }) => {
@@ -467,7 +500,7 @@ const App = (props) => {
 
             <div className='searchForm'>
               <div className='searchGroup'>
-                {
+                {/*
                   <div className='formWrap'>
                     <label className='label' htmlFor='SORT'>정렬기준</label>
                     <select id="SORT" onChange={(e) => setSortKey(e.target.value)} value={sortKey || "default"}>
@@ -475,8 +508,8 @@ const App = (props) => {
                       <option value="DATE">등록일</option>
                     </select>
                   </div>
-                }
-                <div className='formWrap'>
+                */}
+                <div className='formWrap span2'>
                   <label className='label' htmlFor='RT'>과제명</label>
                   <input
                     type='text'
@@ -647,20 +680,20 @@ const App = (props) => {
                   <td colSpan="22" style={style.table.caption} className='caption'>과제관리대장</td>
                 </tr>
                 <tr>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)}>관리번호</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)}>확인번호</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w50)}>팀장</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w304)}>과제명</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w54)}>1차완료<br />평가연도</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)}>1차완료<br />평가결과</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)}>2차완료<br />평가연도</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)}>2차완료<br />평가결과</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w54)}>1차성과<br />평가연도</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)}>1차성과<br />평가결과</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)}>2차성과<br />평가연도</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)}>2차성과<br />평가결과</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w70)}>재무성과<br />(백만원)</th>
-                  <th style={Object.assign({}, style.table.th, style.table.w54)}>사후<br />관리상태</th>
+                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("ID") }}>관리번호{renderSortIcon("ID")}</th>
+                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("CHECKNUM") }}>확인번호{renderSortIcon("CHECKNUM")}</th>
+                  <th style={Object.assign({}, style.table.th, style.table.w50)} onClick={() => { handleSort("LEADER") }}>팀장{renderSortIcon("LEADER")}</th>
+                  <th style={Object.assign({}, style.table.th, style.table.w304)} onClick={() => { handleSort("TITLE") }}>과제명{renderSortIcon("TITLE")}</th>
+                  <th style={Object.assign({}, style.table.th, style.table.w54)} onClick={() => { handleSort("STARTCOMPYEAR") }}>1차완료<br />평가연도{renderSortIcon("STARTCOMPYEAR")}</th>
+                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("STARTCOMPRESULT") }}>1차완료<br />평가결과{renderSortIcon("STARTCOMPRESULT")}</th>
+                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("ENDCOMPYEAR") }}>2차완료<br />평가연도{renderSortIcon("ENDCOMPYEAR")}</th>
+                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("ENDCOMPRESULT") }}>2차완료<br />평가결과{renderSortIcon("ENDCOMPRESULT")}</th>
+                  <th style={Object.assign({}, style.table.th, style.table.w54)} onClick={() => { handleSort("STARTYEAR") }}>1차성과<br />평가연도{renderSortIcon("STARTYEAR")}</th>
+                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("STARTRESULT") }}>1차성과<br />평가결과{renderSortIcon("STARTRESULT")}</th>
+                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("ENDYEAR") }}>2차성과<br />평가연도{renderSortIcon("ENDYEAR")}</th>
+                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("ENDRESULT") }}>2차성과<br />평가결과{renderSortIcon("ENDRESULT")}</th>
+                  <th style={Object.assign({}, style.table.th, style.table.w70)} onClick={() => { handleSort("RESULT") }}>재무성과<br />(백만원){renderSortIcon("RESULT")}</th>
+                  <th style={Object.assign({}, style.table.th, style.table.w54)} onClick={() => { handleSort("COLOR") }}>사후<br />관리상태{renderSortIcon("COLOR")}</th>
                   <th style={Object.assign({}, style.table.th, style.table.w180)}>관리지표</th>
                   <th style={Object.assign({}, style.table.th, style.table.w48)}>단위</th>
                   <th style={Object.assign({}, style.table.th, style.table.w54)}>수치</th>
