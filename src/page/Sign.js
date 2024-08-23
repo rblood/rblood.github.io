@@ -45,7 +45,10 @@ const App = (props) => {
 
     if (docSnap.exists()) {
       const data = docSnap.data();
-      if (number === data.adminID && pw === data.adminPW) {
+      if (
+        (number === data.adminID && pw === data.adminPW) ||
+        (number === data.rootID && pw === data.rootPW)
+      ) {
         setUser(number);
         setYear(data.year);
 
@@ -112,15 +115,15 @@ const App = (props) => {
                   <i className={view ? "ri-eye-off-line" : "ri-eye-line"}></i>
                 </button>
                 <span className={'vali'}>
-                  {number === "" && pw === "" 
-                    ? '아이디와 비밀번호는 관리자에게 문의하세요' 
-                    : number === 'fail' 
-                    ? '올바른 아이디가 아닙니다' 
-                    : pw === 'fail' 
-                    ? '비밀번호를 입력하세요' 
-                    : pw === 'same' 
-                    ? '비밀번호가 일치하지 않습니다' 
-                    : ''}
+                  {number === "" && pw === ""
+                    ? '아이디와 비밀번호는 관리자에게 문의하세요'
+                    : number === 'fail'
+                      ? '올바른 아이디가 아닙니다'
+                      : pw === 'fail'
+                        ? '비밀번호를 입력하세요'
+                        : pw === 'same'
+                          ? '비밀번호가 일치하지 않습니다'
+                          : ''}
                 </span>
               </div>
             </div>
