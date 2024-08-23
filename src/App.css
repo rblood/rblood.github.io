@@ -1282,8 +1282,13 @@ table thead th:nth-child(-n+14) {
   .searchForm,
   .printHide,
   .editTd,
-  .detailTd {
+  .detailTd,
+  table thead th i {
     display: none !important;
+  }
+
+  table thead th {
+    position:inherit;
   }
 
   .hidePrint {
@@ -1329,7 +1334,7 @@ table thead th:nth-child(-n+14) {
     width: 100% !important;
     page-break-after: auto !important;
   }
-
+  
   tr {
     page-break-inside: avoid !important;
     /* 행이 페이지를 넘어가면 나누지 않음 */
