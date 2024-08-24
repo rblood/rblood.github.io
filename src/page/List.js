@@ -4,7 +4,7 @@ import React, { useState, useEffect, useContext, useRef, useCallback, useMemo } 
 import context from '../component/Context';
 import { useLocation, useHistory } from "react-router-dom";
 import { isMobile } from 'react-device-detect';
-import { onSnapshot, query, orderBy, where } from 'firebase/firestore';
+import { onSnapshot, query, orderBy, where} from 'firebase/firestore';
 import moment from "moment";
 
 const App = (props) => {
@@ -73,7 +73,7 @@ const App = (props) => {
         borderCollapse: "collapse",
         border: "2px solid #000",
         backgroundColor: "#fff",
-        fontSize: "12px",
+        fontSize: "13px",
         tableLayout: "fixed",
         caption: {
           fontSize: "21px",
@@ -95,15 +95,15 @@ const App = (props) => {
           width: "54px"
         },
         w180: {
-          width: "180px"
+          width: "167px"
         },
         w304: {
-          width: "300px"
+          width: "284px"
         },
         td: {
           border: isMobile ? "1px solid #d3d3d3" : "0.5pt solid #d3d3d3",
           fontWeight: "400",
-          padding: "6px 4px",
+          padding: "2px",
           height: "51px",
           minHeight: "51px",
           textAlign: "center",
@@ -112,7 +112,8 @@ const App = (props) => {
           overflowWrap: "anywhere",
         },
         th: {
-          background: "#efefef",
+          background: "#f3f3f3",
+          fontWeight: "600",
           borderBottom: isMobile ? "1px solid #ccc" : "0.5pt solid #ccc",
         },
         thE: {
@@ -432,11 +433,11 @@ const App = (props) => {
           <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w70)}>{data.CHECKNUM}</td>
           <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w50)}>{data.LEADER}</td>
           <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w304)}>{data.TITLE}</td>
-          <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w54)}>{data.STARTCOMPYEAR}</td>
+          <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w70)}>{data.STARTCOMPYEAR}</td>
           <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w70)}>{data.STARTCOMPRESULT}</td>
           <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w70)}>{data.ENDCOMPYEAR}</td>
           <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w70)}>{data.ENDCOMPRESULT}</td>
-          <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w54)}>{data.STARTYEAR}</td>
+          <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w70)}>{data.STARTYEAR}</td>
           <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w70)}>{data.STARTRESULT}</td>
           <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w70)}>{data.ENDYEAR}</td>
           <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w70)}>{data.ENDRESULT}</td>
@@ -639,24 +640,24 @@ const App = (props) => {
             </div>
 
           </div>
-          <div className='tableContents'>
+          <div className='tableContents list'>
             <table ref={tableRef} style={style.table}>
               <colgroup>
                 <col width="70px" />
                 <col width="70px" />
                 <col width="50px" />
-                <col width="300px" />
+                <col width="284px" />
+                <col width="70px" />
+                <col width="70px" />
+                <col width="70px" />
+                <col width="70px" />
+                <col width="70px" />
+                <col width="70px" />
+                <col width="70px" />
+                <col width="70px" />
+                <col width="70px" />
                 <col width="54px" />
-                <col width="70px" />
-                <col width="70px" />
-                <col width="70px" />
-                <col width="54px" />
-                <col width="70px" />
-                <col width="70px" />
-                <col width="70px" />
-                <col width="70px" />
-                <col width="54px" />
-                <col width="180px" />
+                <col width="167px" />
                 <col width="48px" />
                 <col width="54px" />
                 <col width="54px" />

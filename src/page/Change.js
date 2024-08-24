@@ -13,7 +13,6 @@ const App = (props) => {
   const { number, pw } = inputs;
   const history = useHistory();
 
-
   // 입력 변경 핸들러
   const onChange = useCallback((e) => {
     const { name, value } = e.target;
@@ -27,12 +26,22 @@ const App = (props) => {
     history.goBack();
   };
 
+  const hashPassword = async (password) => {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hash = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(hash))
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('');
+  };
 
   const onUpdate = useCallback(async () => {
+    const hashedPw = await hashPassword(pw);  // 비밀번호를 해시 처리
+
     try {
       await updateDoc(doc(props.manage, "ini"), {
         adminID: number,
-        adminPW: pw,
+        adminPW: hashedPw,
       });
       // 완료 후 수행할 작업
       setUser(null);

@@ -37,7 +37,7 @@
 .headGroup {
   color: #fff;
   font-size: 18px;
-  font-weight: 900;
+  font-weight: 500;
   display: flex;
   flex: 1;
 }
@@ -76,7 +76,6 @@
   align-items: center;
   display: flex;
   color: #fff;
-  text-transform: capitalize;
 }
 
 .headRight span {
@@ -92,7 +91,6 @@
   align-items: center;
   height: 56px;
   flex-direction: row;
-  font-size: 14px;
   padding-left: 0;
   padding-right: 0;
 }
@@ -540,14 +538,20 @@
 
 .label {
   border: 1px solid rgba(0, 0, 0, 0.1);
-  /*border-left-width: 0px;*/
-  background-color: #fff;
   padding: 0 8px;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   position: relative;
+
+  width: 120px;
+  background: #EFEFEF;
+  font-size: 13px;
+  font-weight: 600;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
 }
+
 
 .label span {
   color: #7a7a7a;
@@ -578,7 +582,7 @@
 }
 
 .resultHead .titleDate {
-  font-size: 12px;
+  font-size: 14px;
   color: #dba504;
 }
 
@@ -616,7 +620,6 @@
   align-items: center;
   flex-direction: row;
   height: 36px !important;
-  cursor: pointer;
   background-color: rgba(0, 0, 0, 0.016);
 }
 
@@ -650,10 +653,9 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   flex: 1;
   color: #efefef;
-  cursor: pointer;
   border-radius: 0;
 }
 
@@ -749,7 +751,7 @@ tbody tr:hover td.delTd{
 }
 
 .notice .noticeTextSub {
-  font-size: 12px;
+  font-size: 14px;
   color: #959595;
 }
 
@@ -827,20 +829,12 @@ tbody tr:hover td.delTd{
 }
 
 .titleSub {
-  font-size: 14px;
+  font-size: 13px;
   color: #7a7a7a;
   padding-left: 4px;
 }
 
-.label {
-  width: 120px;
-  background: #EFEFEF;
-  font-size: 12px;
 
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
 
 .label .red {
   color: #f00;
@@ -902,7 +896,7 @@ tbody tr:hover td.delTd{
   border: 1px solid #E0E0E0;
   border-radius: 0;
   padding: 0px 8px;
-  font-size: 12px;
+  font-size: 13px;
   resize: none;
   background-color: transparent;
 
@@ -1039,7 +1033,7 @@ tbody tr:hover td.delTd{
   border-top-width: 0;
   justify-content: space-between;
   align-items: flex-start;
-  padding-top: 14px;
+  padding-top: 15px;
 }
 
 .caption {
@@ -1073,6 +1067,7 @@ label.radioColor {
   width: 26px;
   height: 26px;
   background-color: #efefef;
+  cursor: pointer;
 }
 
 /*label.radioColor::after {
@@ -1147,12 +1142,16 @@ table thead th i{
   position: absolute;
   right: 0;
   top: 2px;
-  font-size: 12px;
+  font-size: 14px;
   color: #898989;
 }
 
-table thead th:nth-child(-n+14) {
+.list table thead th:nth-child(-n+14) {
   cursor: pointer;
+}
+
+section + section {
+  margin-top: 24px;
 }
 
 @media (max-width: 459.9px) {
@@ -1318,7 +1317,7 @@ table thead th:nth-child(-n+14) {
 
   .tableContents {
     width: 100%;
-    overflow-x: initial !important;
+    overflow-x: hidden !important;
     display: inherit !important;
     /* flex-direction: column; */
     /* justify-content: center; */
@@ -1338,6 +1337,10 @@ table thead th:nth-child(-n+14) {
   tr {
     page-break-inside: avoid !important;
     /* 행이 페이지를 넘어가면 나누지 않음 */
+  }
+
+  section + section {
+    margin-top: 0px;
   }
 
 }

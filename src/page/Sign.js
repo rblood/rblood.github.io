@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { useHistory } from "react-router-dom";
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import context from '../component/Context';
 import mnd from '../assets/logo.svg';
 
@@ -38,22 +38,39 @@ const App = (props) => {
     }));
   }, []);
 
+  const hashPassword = async (password) => {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hash = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(hash))
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('');
+  };
+
   // 로그인 체크
   const onCheck = async () => {
+    const hashedPw = await hashPassword(pw);  // 비밀번호를 해시 처리
+    //console.log(hashedPw)
     const docRef = doc(props.manage, "ini");
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
       const data = docSnap.data();
       if (
-        (number === data.adminID && pw === data.adminPW) ||
-        (number === data.rootID && pw === data.rootPW)
+        (number === data.adminID && hashedPw === data.adminPW) ||
+        (number === data.rootID && hashedPw === data.rootPW)
       ) {
         setUser(number);
         setYear(data.year);
 
         localStorage.setItem('user', number);
         localStorage.setItem("year", JSON.stringify(data.year));
+
+        number === data.adminID && await setDoc(doc(props.manage, "ini"), {
+          log: {
+            ['GT_' + new Date().getTime()]: serverTimestamp() // 고유한 필드명으로 데이터 추가
+          }
+        }, { merge: true });
 
         history.push('/');
       } else {

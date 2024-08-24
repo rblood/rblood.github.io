@@ -39,10 +39,11 @@ const App = (props) => {
     datay5: data?.DATAY5 || "",
     before: data?.BEFORE || "",
     after: data?.AFTER || "",
+    other: data?.OTHER || ""
   }), [data]);
 
   const [inputs, setInputs] = useState(memoizedInputs);
-  const { id, checknum, leader, title, endcompyear, endyear, result, indi, unit, datay0, before, after } = inputs;
+  const { id, checknum, leader, title, endcompyear, endyear, result, indi, unit, datay0, before, after, other } = inputs;
 
   const numbertoCommas = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -57,8 +58,8 @@ const App = (props) => {
       borderCollapse: "separate",
       borderSpacing: 0,
       border: "2px solid #000",
-      backgroundColor: "#f5f5f7",
-      fontSize: "14px",
+      backgroundColor: "#f3f3f3",
+      fontSize: "13px",
       lineHeight: "26px",
       tableLayout: "fixed",
       backgroundImage: `url(${logo})`,
@@ -76,7 +77,7 @@ const App = (props) => {
         textUnderlineOffset: "4px",
       },
       td: {
-        padding: "0px 16px",
+        padding: isMobile ? "4px 16px" : "0px 16px",
         //height: tempHeight,
         backgroundColor: "rgba(255, 255, 255, 0.9)",
         wordBreak: "keep-all",
@@ -107,6 +108,9 @@ const App = (props) => {
         verticalAlign: "top",
         padding: "16px",
         height: "168px"
+      },
+      tdEnd: {
+        height: "auto"
       },
       tdT: {
         borderRadius: "8px 8px 0 0",
@@ -241,6 +245,9 @@ const App = (props) => {
       },
       foot: {
         height: isMobile ? "16px" : "24px",
+        textAlign: "center",
+        fontSize: "12px",
+        lineHeight: "0px"
       }
     }
   }), []);
@@ -315,142 +322,179 @@ const App = (props) => {
             {!isMobile && <button className={'button'} onClick={onPrint}>인쇄</button>}
           </div>
         </div>
+
         <div className='tableContents'>
-          <table ref={tableRef} style={style.table}>
-            <colgroup>
-              <col width={isMobile ? "16px" : "24px"} />
-              <col width="auto" />
-              <col width="auto" />
-              <col width="auto" />
-              <col width="auto" />
-              <col width={isMobile ? "16px" : "24px"} />
-            </colgroup>
-            <thead>
-              <tr>
-                <th style={style.table.th} colSpan={6}>{title}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td><td style={Object.assign({}, style.table.td, style.table.tdT)} colSpan={4}>■ 관리번호&nbsp;:&nbsp;{id}</td><td></td>
-              </tr>
-              <tr>
-                <td></td><td style={style.table.td} colSpan={4}>■ 확인번호&nbsp;:&nbsp;{checknum}</td><td></td>
-              </tr>
-              <tr>
-                <td></td><td style={Object.assign({}, style.table.td, style.table.tdU)} colSpan={4}>■ 팀장&nbsp;:&nbsp;{leader}</td><td></td>
-              </tr>
-              <tr>
-                <td style={style.table.tdS} colSpan={6}></td>
-              </tr>
-              {isMobile ? (
-                <>
-                  <tr>
-                    <td></td><td style={Object.assign({}, style.table.td, style.table.tdT)} colSpan={4}>■ 1차완료 평가연도&nbsp;:&nbsp;{startcompyear}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={style.table.td} colSpan={4}>■ 1차완료 평가결과&nbsp;:&nbsp;{startcompresult}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={style.table.td} colSpan={4}>■ 2차완료 평가연도&nbsp;:&nbsp;{endcompyear}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={style.table.td} colSpan={4}>■ 2차완료 평가결과&nbsp;:&nbsp;{endcompresult}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={style.table.td} colSpan={4}>■ 1차 성과 평가연도&nbsp;:&nbsp;{startyear}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={style.table.td} colSpan={4}>■ 1차 성과 평가결과&nbsp;:&nbsp;{startresult}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={style.table.td} colSpan={4}>■ 2차 성과 평가연도&nbsp;:&nbsp;{endyear}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={Object.assign({}, style.table.td, style.table.tdU)} colSpan={4}>■ 2차 성과 평가결과&nbsp;:&nbsp;{endresult}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td style={style.table.tdS} colSpan={6}></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={Object.assign({}, style.table.td, style.table.tdT)} colSpan={4}>■ 재무성과(백만원)&nbsp;:&nbsp;{numbertoCommas(result)}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={style.table.td} colSpan={4}>■ 관리지표 1&nbsp;:&nbsp;{indi[0]}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={Object.assign({}, style.table.tdML, style.table.tdI)} colSpan={2}>○ 단위&nbsp;:&nbsp;{unit[0]}</td><td style={Object.assign({}, style.table.tdMR)} colSpan={2}>○ 수치&nbsp;:&nbsp;{datay0[0]}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={style.table.td} colSpan={4}>■ 관리지표 2&nbsp;:&nbsp;{indi[1]}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={Object.assign({}, style.table.tdML, style.table.tdI)} colSpan={2}>○ 단위&nbsp;:&nbsp;{unit[1]}</td><td style={Object.assign({}, style.table.tdMR)} colSpan={2}>○ 수치&nbsp;:&nbsp;{datay0[1]}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={style.table.td} colSpan={4}>■ 관리지표 3&nbsp;:&nbsp;{indi[1]}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={Object.assign({}, style.table.tdBL, style.table.tdBP, style.table.tdI)} colSpan={2}>○ 단위&nbsp;:&nbsp;{unit[2]}</td><td style={Object.assign({}, style.table.tdBR, style.table.tdBP)} colSpan={2}>○ 수치&nbsp;:&nbsp;{datay0[2]}</td><td></td>
-                  </tr>
-                </>
-              ) : (
-                <>
-                  <tr>
-                    <td></td><td style={Object.assign({}, style.table.tdTL)} colSpan={2}>■ 1차완료 평가연도&nbsp;:&nbsp;{startcompyear}</td><td style={Object.assign({}, style.table.tdTR)} colSpan={2}>■ 1차완료 평가결과&nbsp;:&nbsp;{startcompresult}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={Object.assign({}, style.table.tdML)} colSpan={2}>■ 2차완료 평가연도&nbsp;:&nbsp;{endcompyear}</td><td style={Object.assign({}, style.table.tdMR)} colSpan={2}>■ 2차완료 평가결과&nbsp;:&nbsp;{endcompresult}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={Object.assign({}, style.table.tdML)} colSpan={2}>■ 1차 성과 평가연도&nbsp;:&nbsp;{startyear}</td><td style={Object.assign({}, style.table.tdMR)} colSpan={2}>■ 1차 성과 평가결과&nbsp;:&nbsp;{startresult}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={Object.assign({}, style.table.tdBL)} colSpan={2}>■ 2차 성과 평가연도&nbsp;:&nbsp;{endyear}</td><td style={Object.assign({}, style.table.tdBR)} colSpan={2}>■ 2차 성과 평가결과&nbsp;:&nbsp;{endresult}</td><td></td>
-                  </tr>
-                  <tr>
-                    <td style={style.table.tdS} colSpan={6}></td>
-                  </tr>
-                  <tr>
-                    <td></td><td style={Object.assign({}, style.table.td, style.table.tdT)} colSpan={4}>■ 재무성과(백만원)&nbsp;:&nbsp;{numbertoCommas(result)}</td><td></td>
-                  </tr>
+          <section>
+            <table ref={tableRef} style={style.table}>
+              <colgroup>
+                <col width={isMobile ? "16px" : "24px"} />
+                <col width="auto" />
+                <col width="auto" />
+                <col width="auto" />
+                <col width="auto" />
+                <col width={isMobile ? "16px" : "24px"} />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th style={style.table.th} colSpan={6}>{title}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td><td style={Object.assign({}, style.table.td, style.table.tdT)} colSpan={4}>■ 관리번호&nbsp;:&nbsp;{id}</td><td></td>
+                </tr>
+                <tr>
+                  <td></td><td style={style.table.td} colSpan={4}>■ 확인번호&nbsp;:&nbsp;{checknum}</td><td></td>
+                </tr>
+                <tr>
+                  <td></td><td style={Object.assign({}, style.table.td, style.table.tdU)} colSpan={4}>■ 팀장&nbsp;:&nbsp;{leader}</td><td></td>
+                </tr>
+                <tr>
+                  <td style={style.table.tdS} colSpan={6}></td>
+                </tr>
+                {isMobile ? (
+                  <>
+                    <tr>
+                      <td></td><td style={Object.assign({}, style.table.td, style.table.tdT)} colSpan={4}>■ 1차완료 평가연도&nbsp;:&nbsp;{startcompyear}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={style.table.td} colSpan={4}>■ 1차완료 평가결과&nbsp;:&nbsp;{startcompresult}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={style.table.td} colSpan={4}>■ 2차완료 평가연도&nbsp;:&nbsp;{endcompyear}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={style.table.td} colSpan={4}>■ 2차완료 평가결과&nbsp;:&nbsp;{endcompresult}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={style.table.td} colSpan={4}>■ 1차 성과 평가연도&nbsp;:&nbsp;{startyear}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={style.table.td} colSpan={4}>■ 1차 성과 평가결과&nbsp;:&nbsp;{startresult}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={style.table.td} colSpan={4}>■ 2차 성과 평가연도&nbsp;:&nbsp;{endyear}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={Object.assign({}, style.table.td, style.table.tdU)} colSpan={4}>■ 2차 성과 평가결과&nbsp;:&nbsp;{endresult}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td style={style.table.tdS} colSpan={6}></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={Object.assign({}, style.table.td, style.table.tdT)} colSpan={4}>■ 재무성과(백만원)&nbsp;:&nbsp;{numbertoCommas(result)}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={style.table.td} colSpan={4}>■ 관리지표 1&nbsp;:&nbsp;{indi[0]}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={Object.assign({}, style.table.tdML, style.table.tdI)} colSpan={2}>○ 단위&nbsp;:&nbsp;{unit[0]}</td><td style={Object.assign({}, style.table.tdMR)} colSpan={2}>○ 수치&nbsp;:&nbsp;{datay0[0]}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={style.table.td} colSpan={4}>■ 관리지표 2&nbsp;:&nbsp;{indi[1]}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={Object.assign({}, style.table.tdML, style.table.tdI)} colSpan={2}>○ 단위&nbsp;:&nbsp;{unit[1]}</td><td style={Object.assign({}, style.table.tdMR)} colSpan={2}>○ 수치&nbsp;:&nbsp;{datay0[1]}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={style.table.td} colSpan={4}>■ 관리지표 3&nbsp;:&nbsp;{indi[1]}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={Object.assign({}, style.table.tdBL, style.table.tdBP, style.table.tdI)} colSpan={2}>○ 단위&nbsp;:&nbsp;{unit[2]}</td><td style={Object.assign({}, style.table.tdBR, style.table.tdBP)} colSpan={2}>○ 수치&nbsp;:&nbsp;{datay0[2]}</td><td></td>
+                    </tr>
+                  </>
+                ) : (
+                  <>
+                    <tr>
+                      <td></td><td style={Object.assign({}, style.table.tdTL)} colSpan={2}>■ 1차완료 평가연도&nbsp;:&nbsp;{startcompyear}</td><td style={Object.assign({}, style.table.tdTR)} colSpan={2}>■ 1차완료 평가결과&nbsp;:&nbsp;{startcompresult}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={Object.assign({}, style.table.tdML)} colSpan={2}>■ 2차완료 평가연도&nbsp;:&nbsp;{endcompyear}</td><td style={Object.assign({}, style.table.tdMR)} colSpan={2}>■ 2차완료 평가결과&nbsp;:&nbsp;{endcompresult}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={Object.assign({}, style.table.tdML)} colSpan={2}>■ 1차 성과 평가연도&nbsp;:&nbsp;{startyear}</td><td style={Object.assign({}, style.table.tdMR)} colSpan={2}>■ 1차 성과 평가결과&nbsp;:&nbsp;{startresult}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={Object.assign({}, style.table.tdBL)} colSpan={2}>■ 2차 성과 평가연도&nbsp;:&nbsp;{endyear}</td><td style={Object.assign({}, style.table.tdBR)} colSpan={2}>■ 2차 성과 평가결과&nbsp;:&nbsp;{endresult}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td style={style.table.tdS} colSpan={6}></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={Object.assign({}, style.table.td, style.table.tdT)} colSpan={4}>■ 재무성과(백만원)&nbsp;:&nbsp;{numbertoCommas(result)}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={style.table.tdML} colSpan={2}>■ 관리지표 1&nbsp;:&nbsp;{indi[0]}</td><td style={style.table.tdM} >○ 단위&nbsp;:&nbsp;{unit[0]}</td><td style={style.table.tdMR} >○ 수치&nbsp;:&nbsp;{datay0[0]}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={style.table.tdML} colSpan={2}>■ 관리지표 2&nbsp;:&nbsp;{indi[1]}</td><td style={style.table.tdM} >○ 단위&nbsp;:&nbsp;{unit[1]}</td><td style={style.table.tdMR} >○ 수치&nbsp;:&nbsp;{datay0[1]}</td><td></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={style.table.tdBL} colSpan={2}>■ 관리지표 3&nbsp;:&nbsp;{indi[2]}</td><td style={style.table.tdMB} >○ 단위&nbsp;:&nbsp;{unit[2]}</td><td style={style.table.tdBR} >○ 수치&nbsp;:&nbsp;{datay0[2]}</td><td></td>
+                    </tr>
 
+                  </>
+                )}
+                <tr>
+                  <td style={style.table.tdS} colSpan={6}></td>
+                </tr>
+                <tr>
+                  <td></td><td style={Object.assign({}, style.table.td, style.table.tdR)} colSpan={4}>■ 개선 전 주요내용&nbsp;:&nbsp;{before}</td><td></td>
+                </tr>
+                <tr>
+                  <td style={style.table.tdS} colSpan={6}></td>
+                </tr>
+                <tr>
+                  <td></td><td style={Object.assign({}, style.table.td, style.table.tdR)} colSpan={4}>■ 개선 후 주요내용&nbsp;:&nbsp;{after}</td><td></td>
+                </tr>
+                {
+                  isMobile && other &&
+                  <>
+                    <tr>
+                      <td style={style.table.tdS} colSpan={6}></td>
+                    </tr>
+                    <tr>
+                      <td></td><td style={Object.assign({}, style.table.td, style.table.tdR)} colSpan={4}>■ 기타내용&nbsp;:&nbsp;{other}</td><td></td>
+                    </tr>
+                  </>
+                }
+                <tr>
+                  <th></th><th colSpan={4} style={style.table.foot} className='pageNum'>{!isMobile && (other ? "1 / 2" : "1 / 1")}</th><th></th>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          {
+            !isMobile && other &&
+            <section>
+              <table style={style.table}>
+                <colgroup>
+                  <col width={isMobile ? "16px" : "24px"} />
+                  <col width="auto" />
+                  <col width="auto" />
+                  <col width="auto" />
+                  <col width="auto" />
+                  <col width={isMobile ? "16px" : "24px"} />
+                </colgroup>
+
+                <thead>
                   <tr>
-                    <td></td><td style={style.table.tdML} colSpan={2}>■ 관리지표 1&nbsp;:&nbsp;{indi[0]}</td><td style={style.table.tdM} >○ 단위&nbsp;:&nbsp;{unit[0]}</td><td style={style.table.tdMR} >○ 수치&nbsp;:&nbsp;{datay0[0]}</td><td></td>
+                    <th style={style.table.th} colSpan={6}>{title}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td></td><td style={Object.assign({}, style.table.td, style.table.tdR, style.table.tdEnd)} colSpan={4}>■ 기타내용&nbsp;:&nbsp;{other}</td><td></td>
                   </tr>
                   <tr>
-                    <td></td><td style={style.table.tdML} colSpan={2}>■ 관리지표 2&nbsp;:&nbsp;{indi[1]}</td><td style={style.table.tdM} >○ 단위&nbsp;:&nbsp;{unit[1]}</td><td style={style.table.tdMR} >○ 수치&nbsp;:&nbsp;{datay0[1]}</td><td></td>
+                    <th></th><th colSpan={4} style={style.table.foot} className='pageNum'>{!isMobile && "2 / 2"}</th><th></th>
                   </tr>
-                  <tr>
-                    <td></td><td style={style.table.tdBL} colSpan={2}>■ 관리지표 3&nbsp;:&nbsp;{indi[2]}</td><td style={style.table.tdMB} >○ 단위&nbsp;:&nbsp;{unit[2]}</td><td style={style.table.tdBR} >○ 수치&nbsp;:&nbsp;{datay0[2]}</td><td></td>
-                  </tr>
-
-                </>
-              )}
-
-
-              <tr>
-                <td style={style.table.tdS} colSpan={6}></td>
-              </tr>
-
-              <tr>
-                <td></td><td style={Object.assign({}, style.table.td, style.table.tdR)} colSpan={4}>■ 개선 전 주요내용&nbsp;:&nbsp;{before}</td><td></td>
-              </tr>
-
-              <tr>
-                <td style={style.table.tdS} colSpan={6}></td>
-              </tr>
-
-              <tr>
-                <td></td><td style={Object.assign({}, style.table.td, style.table.tdR)} colSpan={4}>■ 개선 후 주요내용&nbsp;:&nbsp;{after}</td><td></td>
-              </tr>
-
-              <tr>
-                <th colSpan={6} style={style.table.foot}></th>
-              </tr>
-            </tbody>
-          </table>
+                </tbody>
+              </table>
+            </section>
+          }
         </div>
+
       </div>
     </div>
   );

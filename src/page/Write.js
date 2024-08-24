@@ -37,10 +37,11 @@ const App = (props) => {
     datay5: '',
     color: '',
     before: '',
-    after: ''
+    after: '',
+    other:'',
   });
 
-  const { id, checknum, leader, title, endcompyear, endyear, result, indi, unit, datay0, datay1, datay2, datay3, datay4, datay5, color, before, after } = inputs;
+  const { id, checknum, leader, title, endcompyear, endyear, result, indi, unit, datay0, datay1, datay2, datay3, datay4, datay5, color, before, after, other } = inputs;
 
   const minYear = useMemo(() => year.min, [year.min]);
   const maxYear = useMemo(() => year.max, [year.max]);
@@ -120,6 +121,7 @@ const App = (props) => {
         color: data.COLOR || '',
         before: data.BEFORE || '',
         after: data.AFTER || '',
+        other: data.OTHER || '',
       });
       setStartcompyear(data.STARTCOMPYEAR);
       setStartcompresult(data.STARTCOMPRESULT);
@@ -161,11 +163,12 @@ const App = (props) => {
         DATAY5: datay5,
         BEFORE: before,
         AFTER: after,
+        OTHER: other,
         DATE: new Date().toUTCString()
       });
       history.push('/', { updated: true });
     }
-  }, [id, checknum, leader, title, startcompyear, startcompresult, endcompyear, endcompresult, startyear, startresult, endyear, endresult, result, color, indi, unit, datay0, datay1, datay2, datay3, datay4, datay5, before, after, props.manage, history]);
+  }, [id, checknum, leader, title, startcompyear, startcompresult, endcompyear, endcompresult, startyear, startresult, endyear, endresult, result, color, indi, unit, datay0, datay1, datay2, datay3, datay4, datay5, before, after, other, props.manage, history]);
 
   const onUpdate = useCallback(async () => {
     await updateDoc(doc(props.manage, id), {
@@ -193,10 +196,11 @@ const App = (props) => {
       DATAY5: datay5,
       BEFORE: before,
       AFTER: after,
+      OTHER: other,
       DATE: new Date().toUTCString()
     });
     history.push('/', { updated: true });
-  }, [id, checknum, leader, title, startcompyear, startcompresult, endcompyear, endcompresult, startyear, startresult, endyear, endresult, result, color, indi, unit, datay0, datay1, datay2, datay3, datay4, datay5, before, after, props.manage, history]);
+  }, [id, checknum, leader, title, startcompyear, startcompresult, endcompyear, endcompresult, startyear, startresult, endyear, endresult, result, color, indi, unit, datay0, datay1, datay2, datay3, datay4, datay5, before, after, other, props.manage, history]);
 
   const onDelete = useCallback(async () => {
     if (location.state && window.confirm(`${title} 과제를 삭제하시겠습니까?`)) {
@@ -244,7 +248,7 @@ const App = (props) => {
               />
             </div>
             <div className='formWrap'>
-              <label className='label' htmlFor="IDN">관리번호({data ? '변경불가' : '필수'})</label>
+              <label className='label' htmlFor="IDN">{data ? '관리번호' : '관리번호(필수)'}</label>
               <input
                 type="text"
                 id='IDN'
@@ -492,10 +496,10 @@ const App = (props) => {
                 placeholder="입력하세요"
                 onChange={handleInputChange}
                 value={before}
-                rows={5}
+                rows={6}
               ></textarea>
             </div>
-            <div className='formWrap borderBottom'>
+            <div className='formWrap'>
               <label className='label' htmlFor="AF">개선 후 주요내용</label>
               <textarea
                 id='AF'
@@ -503,7 +507,18 @@ const App = (props) => {
                 placeholder="입력하세요"
                 onChange={handleInputChange}
                 value={after}
-                rows={5}
+                rows={6}
+              ></textarea>
+            </div>
+            <div className='formWrap borderBottom'>
+              <label className='label' htmlFor="OT">기타내용</label>
+              <textarea
+                id='OT'
+                name="other"
+                placeholder="입력하세요"
+                onChange={handleInputChange}
+                value={other}
+                rows={6}
               ></textarea>
             </div>
           </div>
