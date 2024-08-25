@@ -112,7 +112,7 @@ const App = (props) => {
           overflowWrap: "anywhere",
         },
         th: {
-          background: "#f3f3f3",
+          background: "#efefef",
           fontWeight: "600",
           borderBottom: isMobile ? "1px solid #ccc" : "0.5pt solid #ccc",
         },
