@@ -94,11 +94,11 @@ const App = (props) => {
         w54: {
           width: "54px"
         },
-        w180: {
+        w167: {
           width: "167px"
         },
-        w304: {
-          width: "284px"
+        w285: {
+          width: "285px"
         },
         td: {
           border: isMobile ? "1px solid #d3d3d3" : "0.5pt solid #d3d3d3",
@@ -432,7 +432,7 @@ const App = (props) => {
           <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w70)}>{data.ID}</td>
           <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w70)}>{data.CHECKNUM}</td>
           <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w50)}>{data.LEADER}</td>
-          <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w304)}>{data.TITLE}</td>
+          <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w285)}>{data.TITLE}</td>
           <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w70)}>{data.STARTCOMPYEAR}</td>
           <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w70)}>{data.STARTCOMPRESULT}</td>
           <td rowSpan={rspan} style={Object.assign({}, style.table.td, style.table.w70)}>{data.ENDCOMPYEAR}</td>
@@ -450,7 +450,7 @@ const App = (props) => {
                 : data.COLOR === 'yellow'
                   ? style.table.tdYellow
                   : style.table.tdNormal)}></td>
-          <td style={Object.assign({}, style.table.td, style.table.w180)}>{indiArray[0]}</td>
+          <td style={Object.assign({}, style.table.td, style.table.w167)}>{indiArray[0]}</td>
           <td style={Object.assign({}, style.table.td, style.table.w48)}>{unitArray[0]}</td>
           <td style={Object.assign({}, style.table.td, style.table.w54)}>{d0Array[0]}</td>
           <td style={Object.assign({}, style.table.td, style.table.w54)}>{d1Array[0]}</td>
@@ -463,7 +463,7 @@ const App = (props) => {
         </tr>
         {indiArray.slice(1).map((indi, index) => (
           <tr key={`list${index + 1}`}>
-            <td style={Object.assign({}, style.table.td, style.table.w180)}>{indi}</td>
+            <td style={Object.assign({}, style.table.td, style.table.w167)}>{indi}</td>
             <td style={Object.assign({}, style.table.td, style.table.w48)}>{unitArray[index + 1]}</td>
             <td style={Object.assign({}, style.table.td, style.table.w54)}>{d0Array[index + 1]}</td>
             <td style={Object.assign({}, style.table.td, style.table.w54)}>{d1Array[index + 1]}</td>
@@ -477,7 +477,7 @@ const App = (props) => {
         ))}
       </>
     );
-  }, [colCount, onEdit, onView, style.table.td, style.table.tdGreen, style.table.tdNormal, style.table.tdRed, style.table.tdYellow, style.table.w180, style.table.w304, style.table.w48, style.table.w50, style.table.w54, style.table.w70]);
+  }, [colCount, onEdit, onView, style.table.td, style.table.tdGreen, style.table.tdNormal, style.table.tdRed, style.table.tdYellow, style.table.w167, style.table.w285, style.table.w48, style.table.w50, style.table.w54, style.table.w70]);
 
   return (
     <div className='resultContainer'>
@@ -646,7 +646,7 @@ const App = (props) => {
                 <col width="70px" />
                 <col width="70px" />
                 <col width="50px" />
-                <col width="284px" />
+                <col width="285px" />
                 <col width="70px" />
                 <col width="70px" />
                 <col width="70px" />
@@ -677,7 +677,7 @@ const App = (props) => {
                   <th style={Object.assign({}, style.table.td, style.table.th, style.table.w70)} onClick={() => { handleSort("ID") }}>관리번호{renderSortIcon("ID")}</th>
                   <th style={Object.assign({}, style.table.td, style.table.th, style.table.w70)} onClick={() => { handleSort("CHECKNUM") }}>확인번호{renderSortIcon("CHECKNUM")}</th>
                   <th style={Object.assign({}, style.table.td, style.table.th, style.table.w50)} onClick={() => { handleSort("LEADER") }}>팀장{renderSortIcon("LEADER")}</th>
-                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w304)} onClick={() => { handleSort("TITLE") }}>과제명{renderSortIcon("TITLE")}</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w285)} onClick={() => { handleSort("TITLE") }}>과제명{renderSortIcon("TITLE")}</th>
                   <th style={Object.assign({}, style.table.td, style.table.th, style.table.w54)} onClick={() => { handleSort("STARTCOMPYEAR") }}>1차완료<br />평가연도{renderSortIcon("STARTCOMPYEAR")}</th>
                   <th style={Object.assign({}, style.table.td, style.table.th, style.table.w70)} onClick={() => { handleSort("STARTCOMPRESULT") }}>1차완료<br />평가결과{renderSortIcon("STARTCOMPRESULT")}</th>
                   <th style={Object.assign({}, style.table.td, style.table.th, style.table.w70)} onClick={() => { handleSort("ENDCOMPYEAR") }}>2차완료<br />평가연도{renderSortIcon("ENDCOMPYEAR")}</th>
@@ -688,7 +688,7 @@ const App = (props) => {
                   <th style={Object.assign({}, style.table.td, style.table.th, style.table.w70)} onClick={() => { handleSort("ENDRESULT") }}>2차성과<br />평가결과{renderSortIcon("ENDRESULT")}</th>
                   <th style={Object.assign({}, style.table.td, style.table.th, style.table.w70)} onClick={() => { handleSort("RESULT") }}>재무성과<br />(백만원){renderSortIcon("RESULT")}</th>
                   <th style={Object.assign({}, style.table.td, style.table.th, style.table.w54)} onClick={() => { handleSort("COLOR") }}>사후<br />관리상태{renderSortIcon("COLOR")}</th>
-                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w180)}>관리지표</th>
+                  <th style={Object.assign({}, style.table.td, style.table.th, style.table.w167)}>관리지표</th>
                   <th style={Object.assign({}, style.table.td, style.table.th, style.table.w48)}>단위</th>
                   <th style={Object.assign({}, style.table.td, style.table.th, style.table.w54)}>수치</th>
                   <th style={Object.assign({}, style.table.td, style.table.th, style.table.w54)}>Y+1</th>

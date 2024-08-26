@@ -96,61 +96,60 @@ const App = (props) => {
             <img className='visualLogo' src={mnd} alt={'logo'} />
           </div>
         </div>
-        <div>
-          <form onSubmit={(e) => { e.preventDefault(); }}>
-            <div className='armyWrap'>
-              <div className={'input'}>
-                <input
-                  className={'id'}
-                  type="text"
-                  id='number'
-                  name="number"
-                  maxLength={16}
-                  placeholder="아이디"
-                  onChange={onChange}
-                  value={number}
-                />
-              </div>
-              <div className={'input'}>
-                <input
-                  className={'pw'}
-                  type={view ? 'text' : 'password'}
-                  id='pw'
-                  name="pw"
-                  maxLength={16}
-                  placeholder="비밀번호"
-                  onChange={onChange}
-                  autoComplete="off"
-                  value={pw}
-                />
-                <button
-                  className='passView'
-                  type="button"
-                  onClick={() => setView(!view)}
-                  title="pass view"
-                >
-                  <i className={view ? "ri-eye-off-line" : "ri-eye-line"}></i>
-                </button>
-                <span className={'vali'}>
-                  {number === "" && pw === ""
-                    ? '아이디와 비밀번호는 관리자에게 문의하세요'
-                    : number === 'fail'
-                      ? '올바른 아이디가 아닙니다'
-                      : pw === 'fail'
-                        ? '비밀번호를 입력하세요'
-                        : pw === 'same'
-                          ? '비밀번호가 일치하지 않습니다'
-                          : ''}
-                </span>
-              </div>
+
+        <form onSubmit={(e) => { e.preventDefault(); }}>
+          <div className='armyWrap'>
+            <div className={'input'}>
+              <input
+                className={'id'}
+                type="text"
+                id='number'
+                name="number"
+                maxLength={16}
+                placeholder="아이디"
+                onChange={onChange}
+                value={number}
+              />
             </div>
-            <div className='controll'>
-              <button className={'button sign'} type="button" onClick={onCheck}>
-                확인
+            <div className={'input'}>
+              <input
+                className={'pw'}
+                type={view ? 'text' : 'password'}
+                id='pw'
+                name="pw"
+                maxLength={16}
+                placeholder="비밀번호"
+                onChange={onChange}
+                autoComplete="off"
+                value={pw}
+              />
+              <button
+                className='passView'
+                type="button"
+                onClick={() => setView(!view)}
+                title="pass view"
+              >
+                <i className={view ? "ri-eye-off-line" : "ri-eye-line"}></i>
               </button>
+              <span className={'vali'}>
+                {number === "" && pw === ""
+                  ? '아이디와 비밀번호는 관리자에게 문의하세요'
+                  : number === 'fail'
+                    ? '올바른 아이디가 아닙니다'
+                    : pw === 'fail'
+                      ? '비밀번호를 입력하세요'
+                      : pw === 'same'
+                        ? '비밀번호가 일치하지 않습니다'
+                        : ''}
+              </span>
             </div>
-          </form>
-        </div>
+          </div>
+          <div className='controll'>
+            <div className='buttonContainer'>
+              <button className={'button sign'} type="button" onClick={onCheck}>확인</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );
