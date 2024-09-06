@@ -189,12 +189,12 @@ const App = (props) => {
 
   // 클릭 시 정렬 기준 및 방향 변경
   const handleSort = (key) => {
-    if (sortKey === key) {
+    /*if (sortKey === key) {
       setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
     } else {
       setSortKey(key);
       setSortOrder('desc');
-    }
+    }*/
   };
 
   const renderSortIcon = (key) => {
