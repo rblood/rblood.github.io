@@ -1153,7 +1153,7 @@ label.radioColor.yellow {
   }
 }
 
-@media print {
+/*@media print {
   header,
   footer,
   .refresh,
@@ -1167,7 +1167,7 @@ label.radioColor.yellow {
   table thead th i {
     display: none !important;
   }
-  table thead th {
+  /table thead th {
     position: inherit;
   }
   .hidePrint {
@@ -1204,4 +1204,4 @@ label.radioColor.yellow {
   section+section {
     margin-top: 0px;
   }
-}
+}*/
