@@ -304,15 +304,19 @@ const App = (props) => {
         height: calc(297mm - 20mm) !important;
       }
       @page {
-        size: A4 portrait !important;
-        margin: 10mm !important;
+      
       }
     `;
     document.head.appendChild(style);
     window.print();
     document.head.removeChild(style);
   }, []);
-
+/*
+@page {
+  size: A4 portrait !important;
+  margin: 10mm !important;
+}
+*/
   return (
     <div className='view'>
       <div className='users'>
