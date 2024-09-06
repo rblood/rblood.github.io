@@ -1295,7 +1295,6 @@ section+section {
 }
 
 @media print {
-
   header,
   footer,
   .refresh,
@@ -1309,19 +1308,15 @@ section+section {
   table thead th i {
     display: none !important;
   }
-
   table thead th {
     position: inherit;
   }
-
   .hidePrint {
     display: table-row;
   }
-
   .caption {
     display: table-cell !important;
   }
-
   .order,
   .resultContainer,
   .view {
@@ -1329,40 +1324,24 @@ section+section {
     min-width: 100% !important;
     max-width: 100% !important;
   }
-
   .users {
     margin: 0px !important;
   }
-
   html {
     margin: 0cm;
   }
-
-
   .tableContents {
     width: 100%;
     overflow-x: hidden !important;
     display: inherit !important;
-    /* flex-direction: column; */
-    /* justify-content: center; */
-    /* align-items: center; */
   }
-
-  /*@page {
-    size: portrait A4 !important;
-    margin: 0 !important;
-  }*/
-
   table {
     width: 100% !important;
     page-break-after: auto !important;
   }
-
   tr {
     page-break-inside: avoid !important;
-    /* 행이 페이지를 넘어가면 나누지 않음 */
   }
-
   section+section {
     margin-top: 0px;
   }
