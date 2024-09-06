@@ -379,11 +379,15 @@ const App = (props) => {
           border-color: #303038 !important;
         }
         @page {
-            size: A3 landscape !important;
-            margin: 10mm !important;
+            
         }
     `;
-
+/*
+@page {
+    size: A3 landscape !important;
+    margin: 10mm !important;
+}
+*/
     document.head.appendChild(style);
     window.print();
     document.head.removeChild(style);
